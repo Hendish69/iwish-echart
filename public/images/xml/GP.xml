@@ -1,0 +1,40 @@
+    <aixm-message:hasMember>
+        <aixm:Glidepath gml:id="pAixm01Gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmGPID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:GlidepathTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03Gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="pAixm04Gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                    <aixm:designator>pAixmDesg</aixm:designator>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:magneticVariation>pAixmDmag</aixm:magneticVariation>
+                    <aixm:magneticVariationAccuracy nilReason="unknown" xsi:nil="true"/>
+                    <aixm:dateMagneticVariation>pAixmmagYear</aixm:dateMagneticVariation>
+                    <aixm:location>
+                        <aixm:ElevatedPoint gml:id="pAixm05Gml" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:pos>pAixmCord</gml:pos>
+                        </aixm:ElevatedPoint>
+                    </aixm:location>
+                    <aixm:frequency uom="MHZ">pAixmFreq</aixm:frequency>
+                    <aixm:slope>pAixmAngSlope</aixm:slope>
+                    <aixm:angleAccuracy nilReason="unknown" xsi:nil="true"/>
+                    <aixm:rdh uom="FT">pAixmElev</aixm:rdh>
+                    <aixm:rdhAccuracy nilReason="unknown" xsi:nil="true"/>
+                </aixm:GlidepathTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Glidepath>
+    </aixm-message:hasMember>
+    

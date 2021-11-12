@@ -1,0 +1,47 @@
+    <aixm-message:hasMember>
+        <aixm:Localizer gml:id="pAixm01Gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmLOCID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:LocalizerTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03Gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition>pAixmTime2</gml:endPosition>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="pAixm04Gml">
+                            <gml:beginPosition>pAixmTime3</gml:beginPosition>
+                            <gml:endPosition>pAixmTime4</gml:endPosition>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                    <aixm:designator>pAixmILSIDENT</aixm:designator>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:emissionClass xsi:nil="true"></aixm:emissionClass>
+                    <aixm:mobile xsi:nil="true"></aixm:mobile>
+                    <aixm:magneticVariation>pAixmDmag</aixm:magneticVariation>
+                    <aixm:magneticVariationAccuracy xsi:nil="true"></aixm:magneticVariationAccuracy>
+                    <aixm:dateMagneticVariation>pAixmmagYear</aixm:dateMagneticVariation>
+                    <aixm:flightChecked xsi:nil="true"></aixm:flightChecked>
+                    <aixm:location>
+                        <aixm:ElevatedPoint gml:id="pAixm05Gml" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:pos>pAixmLocCord</gml:pos>
+                        </aixm:ElevatedPoint>
+                    </aixm:location>
+                    <aixm:frequency uom="MHZ">pAixmFreq</aixm:frequency>
+                    <aixm:magneticBearing xsi:nil="true"></aixm:magneticBearing>
+                    <aixm:magneticBearingAccuracy xsi:nil="true"></aixm:magneticBearingAccuracy>
+                    <aixm:trueBearing xsi:nil="true"></aixm:trueBearing>
+                    <aixm:trueBearingAccuracy xsi:nil="true"></aixm:trueBearingAccuracy>
+                    <aixm:declination xsi:nil="true"></aixm:declination>
+                    <aixm:widthCourse xsi:nil="true"></aixm:widthCourse>
+                    <aixm:widthCourseAccuracy xsi:nil="true"></aixm:widthCourseAccuracy>
+                    <aixm:backCourseUsable xsi:nil="true"></aixm:backCourseUsable>
+                </aixm:LocalizerTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Localizer>
+    </aixm-message:hasMember>
+    

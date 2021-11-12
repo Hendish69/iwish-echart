@@ -1,0 +1,51 @@
+    <aixm-message:hasMember>
+        <aixm:Airspace gml:id="pAixmGml01ID">
+            <gml:identifier codeSpace="urn:uuid:">pAixmASPID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:AirspaceTimeSlice gml:id="pAixmGml02ID">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixmGml03ID">
+                            <gml:beginPosition>pAixmTime</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"></gml:endPosition>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:type>pAixmType</aixm:type>
+                    <aixm:designator>pAixmIcao</aixm:designator>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:designatorICAO>pAixmYN</aixm:designatorICAO>
+                    <aixm:class>
+                        <aixm:AirspaceLayerClass gml:id="pAixmGml04ID">
+                            <aixm:classification>pAixmClass</aixm:classification>
+                        </aixm:AirspaceLayerClass>
+                    </aixm:class>
+                    <aixm:geometryComponent>
+                        <aixm:AirspaceGeometryComponent gml:id="pAixmGml05ID">
+                            <aixm:theAirspaceVolume>
+                                <aixm:AirspaceVolume gml:id="pAixmGml06ID">
+                                    <aixm:upperLimit uom="pUpUom">pAixmUpp</aixm:upperLimit>
+                                    <aixm:upperLimitReference>pAixmUppRef</aixm:upperLimitReference>
+                                    <aixm:lowerLimit uom="pLoUom">pAixmLow</aixm:lowerLimit>
+                                    <aixm:lowerLimitReference>pAixmLowRef</aixm:lowerLimitReference>
+                                    <aixm:horizontalProjection>
+                                        <aixm:Surface srsName="urn:ogc:def:crs:OGC:1.3:CRS84" gml:id="pAixmGml07ID">
+                                            <gml:patches>
+                                            <gml:PolygonPatch>
+                                                <gml:exterior>
+                                                <gml:LinearRing>
+                                                    <gml:posList>pAixmPolygon</gml:posList>
+                                                </gml:LinearRing>
+                                                </gml:exterior>
+                                            </gml:PolygonPatch>
+                                            </gml:patches>
+                                        </aixm:Surface>
+                                    </aixm:horizontalProjection>
+                                </aixm:AirspaceVolume>
+                            </aixm:theAirspaceVolume>
+                        </aixm:AirspaceGeometryComponent>
+                    </aixm:geometryComponent>
+                </aixm:AirspaceTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Airspace>
+    </aixm-message:hasMember>

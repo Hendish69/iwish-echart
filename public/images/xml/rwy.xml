@@ -1,0 +1,54 @@
+    <aixm-message:hasMember>
+        <aixm:Runway gml:id="pAixm01gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:RunwayTimeSlice gml:id="pAixm02gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="pAixm04gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                    <aixm:designator>pAixmDesg</aixm:designator>
+                    <aixm:type>RWY</aixm:type>
+                    <aixm:nominalLength uom="M">paixmLength</aixm:nominalLength>
+                    <aixm:lengthAccuracy xsi:nil="true"></aixm:lengthAccuracy>
+                    <aixm:nominalWidth uom="M">paixmWidth</aixm:nominalWidth>
+                    <aixm:widthAccuracy xsi:nil="true"></aixm:widthAccuracy>
+                    <aixm:widthShoulder xsi:nil="true"></aixm:widthShoulder>
+                    <aixm:lengthStrip uom="M">pAixmStripL</aixm:lengthStrip>
+                    <aixm:widthStrip uom="M">pAixmStripW</aixm:widthStrip>
+                    <aixm:lengthOffset xsi:nil="true"></aixm:lengthOffset>
+                    <aixm:widthOffset xsi:nil="true"></aixm:widthOffset>
+                    <aixm:abandoned xsi:nil="true"></aixm:abandoned>
+                    <aixm:surfaceProperties>
+                        <aixm:SurfaceCharacteristics gml:id="pAixm05gml">
+                            <aixm:composition>pAixmConc</aixm:composition>
+                            getpcnRWY
+                            <aixm:annotation>
+                                <aixm:Note gml:id="pAixm06gml">
+                                    <aixm:purpose>DESCRIPTION</aixm:purpose>
+                                    <aixm:translatedNote>
+                                        <aixm:LinguisticNote gml:id="pAixm07gml">
+                                            <aixm:note lang="eng">pAixmPCN6</aixm:note>
+                                        </aixm:LinguisticNote>
+                                    </aixm:translatedNote>
+                                </aixm:Note>
+                            </aixm:annotation>
+                        </aixm:SurfaceCharacteristics>
+                    </aixm:surfaceProperties>
+                    <aixm:associatedAirportHeliport xlink:href="urn:uuid:parptId"></aixm:associatedAirportHeliport>
+                </aixm:RunwayTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Runway>
+    </aixm-message:hasMember>
+    

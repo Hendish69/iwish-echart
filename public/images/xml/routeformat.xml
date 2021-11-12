@@ -1,0 +1,126 @@
+    <aixm-message:hasMember>
+        <aixm:Route gml:id="prtsgmlid0">
+            <gml:identifier codeSpace="urn:uuid:">prtsuuid0</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:RouteTimeSlice gml:id="prtsgmlid1">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="prtsgmlid2">
+                            <gml:beginPosition>prtsbegpos1</gml:beginPosition>
+                            <gml:endPosition  indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                <aixm:interpretation>BASELINE</aixm:interpretation>
+                <aixm:sequenceNumber>prtsseqnum</aixm:sequenceNumber>
+                <aixm:correctionNumber>prtscornum</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="prtsgmlid3">
+                            <gml:beginPosition>prtsbegpos2</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                <aixm:designatorPrefix>prtsdespref</aixm:designatorPrefix>
+                <aixm:designatorSecondLetter>prtsdesig</aixm:designatorSecondLetter>
+                <aixm:designatorNumber>pRtsNumber</aixm:designatorNumber>
+                <aixm:multipleIdentifier xsi:nil="true"></aixm:multipleIdentifier>
+                <aixm:locationDesignator>prtslocdesig</aixm:locationDesignator>
+                <aixm:name>prtslocname</aixm:name>
+                <aixm:type>prtsType</aixm:type>
+                <aixm:flightRule>prtsflgt</aixm:flightRule>
+                <aixm:internationalUse>prtsuse</aixm:internationalUse>
+                <aixm:militaryUse>CIVIL</aixm:militaryUse>
+                <aixm:militaryTrainingType xsi:nil="true"></aixm:militaryTrainingType>
+                <aixm:userOrganisation xsi:nil="true"></aixm:userOrganisation>
+                    <aixm:annotation>
+                        <aixm:Note gml:id="prtsgmlid4">
+                            <aixm:purpose>prtspurpose</aixm:purpose>
+                                <aixm:translatedNote>
+                                    <aixm:LinguisticNote gml:id="prtsgmlid5">
+                                    <aixm:note lang="eng">prtsnote </aixm:note>
+                                </aixm:LinguisticNote>
+                            </aixm:translatedNote>
+                        </aixm:Note>
+                    </aixm:annotation>
+                </aixm:RouteTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Route>
+    </aixm-message:hasMember>
+    <aixm-message:hasMember>
+        <aixm:RouteSegment gml:id="prtsgmlid6">
+            <gml:identifier codeSpace="urn:uuid:">prtsuuid1</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:RouteSegmentTimeSlice gml:id="prtsgmlid7">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="prtsgmlid8">
+                            <gml:beginPosition>prtsbegpos3</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>prtsseqnum1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="prtsgmlid9">
+                            <gml:beginPosition>prtsbegpos4</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                    <aixm:level>prtslevel</aixm:level>
+                    <aixm:upperLimit uom="prtsUOM1">prtsUpp</aixm:upperLimit>
+                    <aixm:upperLimitReference>MSL</aixm:upperLimitReference>
+                    <aixm:lowerLimit uom="prtsUOM2">prtsLow</aixm:lowerLimit>
+                    <aixm:lowerLimitReference>MSL</aixm:lowerLimitReference>
+                    <aixm:minimumObstacleClearanceAltitude xsi:nil="true"></aixm:minimumObstacleClearanceAltitude>
+                    <aixm:pathType xsi:nil="true"></aixm:pathType>
+                    <aixm:trueTrack>prtstruetrack</aixm:trueTrack>
+                    <aixm:magneticTrack>prtsmagtrack</aixm:magneticTrack>
+                    <aixm:reverseTrueTrack>prtstrueIn</aixm:reverseTrueTrack>
+                    <aixm:reverseMagneticTrack>prtsMagIn</aixm:reverseMagneticTrack>
+                    <aixm:length uom="NM">prtsdist</aixm:length>
+                    <aixm:widthLeft xsi:nil="true"></aixm:widthLeft>
+                    <aixm:widthRight xsi:nil="true"></aixm:widthRight>
+                    <aixm:turnDirection xsi:nil="true"></aixm:turnDirection>
+                    <aixm:signalGap xsi:nil="true"></aixm:signalGap>
+                    <aixm:minimumEnrouteAltitude>prtsMEA</aixm:minimumEnrouteAltitude>
+                    <aixm:minimumCrossingAtEnd xsi:nil="true"></aixm:minimumCrossingAtEnd>
+                    <aixm:minimumCrossingAtEndReference  xsi:nil="true"></aixm:minimumCrossingAtEndReference>
+                    <aixm:maximumCrossingAtEnd xsi:nil="true"></aixm:maximumCrossingAtEnd>
+                    <aixm:maximumCrossingAtEndReference xsi:nil="true"></aixm:maximumCrossingAtEndReference>
+                    <aixm:navigationType>prtsNavType</aixm:navigationType>
+                    <aixm:requiredNavigationPerformance>prtsRNPTypes</aixm:requiredNavigationPerformance>
+                    <aixm:designatorSuffix xsi:nil="true"></aixm:designatorSuffix>
+                    <aixm:start>
+                        <aixm:EnRouteSegmentPoint gml:id="prtsgmlid10">
+                            <aixm:reportingATC>prtscrp1</aixm:reportingATC>
+                            <aixm:pointChoice_fixDesignatedPoint xlink:href="urn:uuid:prtsfixDes1"></aixm:pointChoice_fixDesignatedPoint>
+                        </aixm:EnRouteSegmentPoint>
+                    </aixm:start>
+                    <aixm:routeFormed xlink:href="urn:uuid:prtsuuid0"></aixm:routeFormed>
+                    <aixm:evaluationArea xsi:nil="true"></aixm:evaluationArea>
+                    <aixm:curveExtent>
+                        <aixm:Curve gml:id="prtsgmlid11" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:segments>
+                                <gml:LineStringSegment>
+                                    <gml:pos>prtsPnt1</gml:pos>
+                                    <gml:pos>prtsPnt2</gml:pos>
+                                </gml:LineStringSegment>
+                            </gml:segments>
+                        </aixm:Curve>
+                    </aixm:curveExtent>
+                    <aixm:end>
+                        <aixm:EnRouteSegmentPoint gml:id="prtsgmlid12">
+                            <aixm:reportingATC>prtscrp1</aixm:reportingATC>
+                            <aixm:pointChoice_fixDesignatedPoint xlink:href="urn:uuid:prtsfixDes2"></aixm:pointChoice_fixDesignatedPoint>
+                        </aixm:EnRouteSegmentPoint>
+                    </aixm:end>
+                    <aixm:availability>
+                        <aixm:RouteAvailability gml:id="prtsgmlid13">
+                            <aixm:direction>prtsDir</aixm:direction>
+                            <aixm:status>prtsstatus</aixm:status>
+                        </aixm:RouteAvailability>
+                    </aixm:availability>
+                    <aixm:annotation xsi:nil="true"></aixm:annotation>
+                </aixm:RouteSegmentTimeSlice>
+            </aixm:timeSlice>
+        </aixm:RouteSegment>
+    </aixm-message:hasMember>
+    

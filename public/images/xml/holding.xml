@@ -1,0 +1,66 @@
+    <aixm-message:hasMember>
+        <aixm:HoldingPattern xmlns:aixm="http://www.aixm.aero/schema/5.1" gml:id="pAixm01gml">
+        <gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:HoldingPatternTimeSlice gml:id="pAixm02gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03gml">
+                            <gml:beginPosition>pAixmTime</gml:beginPosition>
+                            <gml:endPosition></gml:endPosition>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                <aixm:interpretation>BASELINE</aixm:interpretation>
+                <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                <aixm:correctionNumber>0</aixm:correctionNumber>
+                <aixm:featureLifetime>
+                    <gml:TimePeriod gml:id="pAixm04gml">
+                        <gml:beginPosition></gml:beginPosition>
+                        <gml:endPosition></gml:endPosition>
+                    </gml:TimePeriod>
+                </aixm:featureLifetime>
+                <aixm:type>pAixmType</aixm:type>
+                <aixm:outboundCourse>pAixmOutbound</aixm:outboundCourse>
+                <aixm:outboundCourseType>MAG_TRACK</aixm:outboundCourseType>
+                <aixm:inboundCourse>pAixmInbound</aixm:inboundCourse>
+                <aixm:turnDirection>pAixmTurn</aixm:turnDirection>
+                <aixm:upperLimit uom="pUomUp">pAixmUpper</aixm:upperLimit>
+                <aixm:upperLimitReference>MSL</aixm:upperLimitReference>
+                <aixm:lowerLimit uom="pUomLo">pAixmLower</aixm:lowerLimit>
+                <aixm:lowerLimitReference>MSL</aixm:lowerLimitReference>
+                <aixm:speedLimit uom="KT">pAixmSpeed</aixm:speedLimit>
+                <aixm:instruction xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"></aixm:instruction>
+                <aixm:nonStandardHolding xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"></aixm:nonStandardHolding>
+                <aixm:outboundLegSpan_endTime>
+                    <aixm:HoldingPatternDuration gml:id="pAixm05gml">
+                        <aixm:duration uom="MIN">pAixmLeg</aixm:duration>
+                    </aixm:HoldingPatternDuration>
+                </aixm:outboundLegSpan_endTime>
+                <aixm:holdingPoint>
+                    <aixm:EnRouteSegmentPoint gml:id="pAixm06gml">
+                        <aixm:waypoint>pAixmYesNo</aixm:waypoint>
+                        <aixm:pointChoice_fixDesignatedPoint xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="urn:uuid:pAixmWPTorNAvaid"></aixm:pointChoice_fixDesignatedPoint>
+                    </aixm:EnRouteSegmentPoint>
+                </aixm:holdingPoint>
+                <aixm:extent>
+                    <aixm:Curve gml:id="pAixm07gml" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                        <gml:segments>
+                            <gml:Geodesic interpolation="geodesic">
+                                <gml:posList>pAixmGeo1</gml:posList>
+                            </gml:Geodesic>
+                            <gml:Arc interpolation="circularArc3Points" numArc="1">
+                                <gml:posList>pAixmArc1</gml:posList>
+                            </gml:Arc>
+                            <gml:Geodesic interpolation="geodesic">
+                                <gml:posList>pAixmGeo2</gml:posList>
+                            </gml:Geodesic>
+                            <gml:Arc interpolation="circularArc3Points" numArc="1">
+                                <gml:posList>pAixmArc2</gml:posList>
+                            </gml:Arc>
+                        </gml:segments>
+                    </aixm:Curve>
+                </aixm:extent>
+                <aixm:annotation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"></aixm:annotation>
+                </aixm:HoldingPatternTimeSlice>
+            </aixm:timeSlice>
+        </aixm:HoldingPattern>
+    </aixm-message:hasMember>

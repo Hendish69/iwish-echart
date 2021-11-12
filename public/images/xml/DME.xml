@@ -1,0 +1,31 @@
+    <aixm-message:hasMember>
+        <aixm:DME gml:id="pDMEgml1">
+            <gml:identifier codeSpace="urn:uuid:">pDMEId</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:DMETimeSlice gml:id="pDMEgml122">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pDMEgml2">
+                            <gml:beginPosition>pDMEBegin1</gml:beginPosition>
+                            <gml:endPosition>pDMEEnd1</gml:endPosition>
+                            </gml:TimePeriod>
+                        </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>pDMESeq</aixm:sequenceNumber>
+                    <aixm:correctionNumber>pDMECorr</aixm:correctionNumber>
+                    <aixm:designator>pNavDesig</aixm:designator>
+                    <aixm:name>pDMEName</aixm:name>
+                    <aixm:magneticVariation>pDMEDMag</aixm:magneticVariation>
+                    <aixm:magneticVariationAccuracy nilReason="unknown" xsi:nil="true"/>
+                    <aixm:dateMagneticVariation>pDMEYear</aixm:dateMagneticVariation>
+                    <aixm:location>
+                        <aixm:ElevatedPoint gml:id="pDMEgml4" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:pos>pDMELocCord</gml:pos>
+                            <aixm:elevation uom="FT">pDMEElev</aixm:elevation>
+                        </aixm:ElevatedPoint>
+                    </aixm:location>
+                    <aixm:channel>pDMEChannel</aixm:channel>
+                </aixm:DMETimeSlice>
+            </aixm:timeSlice>
+        </aixm:DME>
+    </aixm-message:hasMember>
+    

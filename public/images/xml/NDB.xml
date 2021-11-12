@@ -1,0 +1,43 @@
+    <aixm-message:hasMember>
+        <aixm:NDB gml:id="pAixm01Gml">
+        <gml:identifier codeSpace="urn:uuid:">pAixmNDBId</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:NDBTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03Gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>pAixmSeq</aixm:sequenceNumber>
+                    <aixm:designator>pAixmDesg</aixm:designator>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:emissionClass xsi:nil="true"/>
+                    <aixm:mobile xsi:nil="true"/>
+                    <aixm:magneticVariation>pNDBDMag</aixm:magneticVariation>
+                    <aixm:magneticVariationAccuracy nilReason="unknown" xsi:nil="true"/>
+                    <aixm:dateMagneticVariation>pNDBYear</aixm:dateMagneticVariation>
+                    <aixm:flightChecked xsi:nil="true"/>
+                    <aixm:location>
+                        <aixm:ElevatedPoint gml:id="pAixm04Gml" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:pos>pAixmCord</gml:pos>
+                        </aixm:ElevatedPoint>
+                    </aixm:location>
+                    <aixm:annotation>
+                        <aixm:Note gml:id="pAixm05Gml">
+                            <aixm:purpose>REMARK</aixm:purpose>
+                                <aixm:translatedNote>
+                                    <aixm:LinguisticNote gml:id="pAixm06Gml">
+                                    <aixm:note lang="en-en">pAixmRemarks</aixm:note>
+                                </aixm:LinguisticNote>
+                            </aixm:translatedNote>
+                        </aixm:Note>
+                    </aixm:annotation>
+                    <aixm:frequency uom="KHZ">pAixmFreq</aixm:frequency>
+                    <aixm:class xsi:nil="true"/>
+                    <aixm:emissionBand xsi:nil="true"/>
+                </aixm:NDBTimeSlice>
+            </aixm:timeSlice>
+        </aixm:NDB>
+    </aixm-message:hasMember>

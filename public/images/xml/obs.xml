@@ -1,0 +1,59 @@
+    <aixm-message:hasMember>
+        <aixm:VerticalStructure gml:id="pAixm01Gml">
+        <gml:identifier codeSpace="urn:uuid:">pAixmnID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:VerticalStructureTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimeInstant gml:id="pAixm03Gml">
+                            <gml:timePosition>pAixmTime1</gml:timePosition>
+                        </gml:TimeInstant>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:type>pAixmObsTypes</aixm:type>
+                    <aixm:lighted>pAixmLight</aixm:lighted>
+                    <aixm:markingICAOStandard xsi:nil="true"/>
+                    <aixm:group>pAixmgroup</aixm:group>
+                    <aixm:length xsi:nil="true"/>
+                    <aixm:width xsi:nil="true"/>
+                    <aixm:radius xsi:nil="true"/>
+                    <aixm:lightingICAOStandard xsi:nil="true"/>
+                    <aixm:synchronisedLighting xsi:nil="true"/>
+                    <aixm:marker xsi:nil="true"/>
+                    <aixm:part>
+                        <aixm:VerticalStructurePart gml:id="pAixm04Gml">
+                            <aixm:horizontalProjection_location>
+                                <aixm:ElevatedPoint gml:id="pAixm05Gml" srsDimension="2"
+                                    srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                                    <gml:pos>pAixmCord</gml:pos>
+                                    <aixm:annotation>
+                                        <aixm:Note gml:id="pAixm06Gml">
+                                            <aixm:propertyName>elevation</aixm:propertyName>
+                                            <aixm:purpose>REMARK</aixm:purpose>
+                                            <aixm:translatedNote>
+                                                <aixm:LinguisticNote gml:id="pAixm07Gml">
+                                                    <aixm:note lang="en-GB">pAixmRemElev</aixm:note>
+                                                </aixm:LinguisticNote>
+                                            </aixm:translatedNote>
+                                        </aixm:Note>
+                                    </aixm:annotation>
+                                    <aixm:elevation uom="FT">PaixmELev</aixm:elevation>
+                                </aixm:ElevatedPoint>
+                            </aixm:horizontalProjection_location>
+                        </aixm:VerticalStructurePart>
+                    </aixm:part>
+                    <aixm:hostedPassengerService xsi:nil="true"/>
+                    <aixm:supportedGroundLight xsi:nil="true"/>
+                    <aixm:hostedNavaidEquipment xsi:nil="true"/>
+                    <aixm:hostedSpecialNavStation xsi:nil="true"/>
+                    <aixm:hostedUnit xsi:nil="true"/>
+                    <aixm:hostedOrganisation xsi:nil="true"/>
+                    <aixm:supportedService xsi:nil="true"/>
+                    <aixm:annotation xsi:nil="true"/>
+                    <aixm:lightingAvailability xsi:nil="true"/>
+                </aixm:VerticalStructureTimeSlice>
+            </aixm:timeSlice>
+        </aixm:VerticalStructure>
+    </aixm-message:hasMember>
+    

@@ -1,0 +1,52 @@
+	<aixm-message:hasMember>
+		<aixm:VOR gml:id="pVORgml1">
+			<gml:identifier codeSpace="urn:uuid:">pVORId</gml:identifier>
+			<aixm:timeSlice>
+				<aixm:VORTimeSlice gml:id="pVORgml2">
+					<gml:validTime>
+						<gml:TimePeriod gml:id="pVORgml3">
+							<gml:beginPosition>pVORBegin1</gml:beginPosition>
+							<gml:endPosition>pVOREnd1</gml:endPosition>
+						</gml:TimePeriod>
+					</gml:validTime>
+					<aixm:interpretation>BASELINE</aixm:interpretation>
+					<aixm:sequenceNumber>pVORSeq</aixm:sequenceNumber>
+					<aixm:correctionNumber>pVORCorr</aixm:correctionNumber>
+					<aixm:featureLifetime>
+						<gml:TimePeriod gml:id="pVORgml4">
+							<gml:beginPosition>pVORBegin2</gml:beginPosition>
+							<gml:endPosition>pVOREnd2</gml:endPosition>
+						</gml:TimePeriod>
+					</aixm:featureLifetime>
+					<aixm:designator>pNavDesig</aixm:designator>
+					<aixm:name>pVORName</aixm:name>
+					<aixm:emissionClass xsi:nil="true"></aixm:emissionClass>
+					<aixm:mobile xsi:nil="true"></aixm:mobile>
+					<aixm:magneticVariation>pVORDMag</aixm:magneticVariation>
+					<aixm:magneticVariationAccuracy xsi:nil="true"></aixm:magneticVariationAccuracy>
+					<aixm:dateMagneticVariation>pVORMagYear</aixm:dateMagneticVariation>
+					<aixm:flightChecked xsi:nil="true"></aixm:flightChecked>
+					<aixm:location>
+						<aixm:ElevatedPoint gml:id="pVORgml5" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+							<gml:pos>pVORLocCord</gml:pos>
+						</aixm:ElevatedPoint>
+					</aixm:location>
+					<aixm:annotation>
+						<aixm:Note gml:id="pVORgml9">
+							<aixm:purpose>REMARK</aixm:purpose>
+							<aixm:translatedNote>
+								<aixm:LinguisticNote gml:id="pVORgml10">
+									<aixm:note lang="en">pVORRemarks</aixm:note>
+								</aixm:LinguisticNote>
+							</aixm:translatedNote>
+						</aixm:Note>
+					</aixm:annotation>
+					<aixm:type>pVORType</aixm:type>
+					<aixm:frequency uom="MHZ">pVORFreq</aixm:frequency>
+					<aixm:zeroBearingDirection>MAG</aixm:zeroBearingDirection>
+					<aixm:declination xsi:nil="true"></aixm:declination>
+				</aixm:VORTimeSlice>
+			</aixm:timeSlice>
+		</aixm:VOR>
+	</aixm-message:hasMember>
+	

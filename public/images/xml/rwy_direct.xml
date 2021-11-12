@@ -1,0 +1,36 @@
+    <aixm-message:hasMember>
+        <aixm:RunwayDirection gml:id="pAixm01gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmTHRID</gml:identifier>
+                <aixm:timeSlice>
+                    <aixm:RunwayDirectionTimeSlice gml:id="pAixm02gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:designator>pAixmDesg</aixm:designator>
+                    <aixm:trueBearing>pAixmTrueBrg</aixm:trueBearing>
+                    <aixm:trueBearingAccuracy xsi:nil="true"></aixm:trueBearingAccuracy>
+                    <aixm:magneticBearing>pAixmMagBrg</aixm:magneticBearing>
+                    <aixm:slopeTDZ>paixmSlope</aixm:slopeTDZ>
+                    <aixm:elevationTDZ uom="FT">pAixmTDZElev</aixm:elevationTDZ>
+                    <aixm:usedRunway xlink:href="urn:uuid:pAIXMRWYID"></aixm:usedRunway>
+                    <aixm:annotation>
+                        <aixm:Note gml:id="pAixm05gml">
+                            <aixm:purpose>REMARK</aixm:purpose>
+                                <aixm:translatedNote>
+                                    <aixm:LinguisticNote gml:id="pAixm06gml">
+                                    <aixm:note lang="en">pAixmRemarks</aixm:note>
+                                </aixm:LinguisticNote>
+                            </aixm:translatedNote>
+                        </aixm:Note>
+                    </aixm:annotation>
+                </aixm:RunwayDirectionTimeSlice>
+            </aixm:timeSlice>
+        </aixm:RunwayDirection>
+    </aixm-message:hasMember>
+    

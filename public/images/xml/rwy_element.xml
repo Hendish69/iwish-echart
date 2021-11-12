@@ -1,0 +1,46 @@
+	<aixm-message:hasMember>
+			<aixm:RunwayElement xmlns:aixm="http://www.aixm.aero/schema/5.1" gml:id="pAixm01gml">
+				<gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+				<aixm:timeSlice>
+					<aixm:RunwayElementTimeSlice gml:id="pAixm02gml">
+						<gml:validTime>
+							<gml:TimePeriod gml:id="pAixm03gml">
+								<gml:beginPosition>pAixmTime1</gml:beginPosition>
+								<gml:endPosition indeterminatePosition="unknown"/>
+							</gml:TimePeriod>
+						</gml:validTime>
+						<aixm:interpretation>BASELINE</aixm:interpretation>
+						<aixm:sequenceNumber>1</aixm:sequenceNumber>
+						<aixm:featureLifetime>
+							<gml:TimePeriod gml:id="pAixm04gml">
+								<gml:beginPosition>pAixmTime2</gml:beginPosition>
+								<gml:endPosition indeterminatePosition="unknown"/>
+							</gml:TimePeriod>
+						</aixm:featureLifetime>
+						<aixm:associatedRunway xlink:href="urn:uuid:pAIXMRWY_ID"/>
+						<aixm:extent>
+							<aixm:ElevatedSurface srsName="urn:ogc:def:crs:OGC:1.3:CRS84" gml:id="pAixm05gml">
+								<gml:patches>
+									<gml:PolygonPatch>
+										<gml:exterior>
+											<gml:Ring>
+												<gml:curveMember>
+													<gml:Curve gml:id="pAixm06gml">
+														<gml:segments>
+															<gml:GeodesicString>
+																<gml:posList>pAixmPolyRWY</gml:posList>
+															</gml:GeodesicString>
+														</gml:segments>
+													</gml:Curve>
+												</gml:curveMember>
+											</gml:Ring>
+										</gml:exterior>
+									</gml:PolygonPatch>
+								</gml:patches>
+							</aixm:ElevatedSurface>
+						</aixm:extent>
+					</aixm:RunwayElementTimeSlice>
+				</aixm:timeSlice>
+			</aixm:RunwayElement>
+	</aixm-message:hasMember>
+	

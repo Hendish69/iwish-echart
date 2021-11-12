@@ -1,0 +1,68 @@
+    <aixm-message:hasMember>
+        <aixm:DepartureLeg gml:id="pAixm01Gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:DepartureLegTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="pAixm03Gml">
+                            <gml:beginPosition>pAixmTime1</gml:beginPosition>
+                            <gml:endPosition></gml:endPosition>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:correctionNumber>0</aixm:correctionNumber>
+                    <aixm:featureLifetime>
+                        <gml:TimePeriod gml:id="pAixm04Gml">
+                            <gml:beginPosition>pAixmTime2</gml:beginPosition>
+                            <gml:endPosition></gml:endPosition>
+                        </gml:TimePeriod>
+                    </aixm:featureLifetime>
+                    <aixm:endConditionDesignator xsi:nil="true"></aixm:endConditionDesignator>
+                    <aixm:legPath xsi:nil="true"></aixm:legPath>
+                    <aixm:legTypeARINC>pAixmPathTerm</aixm:legTypeARINC>
+                    <aixm:course>pAixmCourse</aixm:course>
+                    <aixm:courseType>pAixmCrsType</aixm:courseType>
+                    <aixm:courseDirection xsi:nil="true"></aixm:courseDirection>
+                    <aixm:turnDirection xsi:nil="true"></aixm:turnDirection>
+                    <aixm:speedLimit xsi:nil="true"></aixm:speedLimit>
+                    <aixm:speedReference xsi:nil="true"></aixm:speedReference>
+                    <aixm:speedInterpretation xsi:nil="true"></aixm:speedInterpretation>
+                    <aixm:bankAngle xsi:nil="true"></aixm:bankAngle>
+                    <aixm:length uom="NM">pAixmLength</aixm:length>
+                    <aixm:duration xsi:nil="true"></aixm:duration>
+                    <aixm:procedureTurnRequired xsi:nil="true"></aixm:procedureTurnRequired>
+                    <aixm:upperLimitAltitude uom="FT">pAixmUpper</aixm:upperLimitAltitude>
+                    <aixm:upperLimitReference>MSL</aixm:upperLimitReference>
+                    <aixm:lowerLimitAltitude xsi:nil="true"></aixm:lowerLimitAltitude>
+                    <aixm:lowerLimitReference xsi:nil="true"></aixm:lowerLimitReference>
+                    <aixm:altitudeInterpretation>AS_ASSIGNED</aixm:altitudeInterpretation>
+                    <aixm:altitudeOverrideATC xsi:nil="true"></aixm:altitudeOverrideATC>
+                    <aixm:altitudeOverrideReference xsi:nil="true"></aixm:altitudeOverrideReference>
+                    <aixm:verticalAngle xsi:nil="true"></aixm:verticalAngle>
+                    pAixmFixPoint
+                    <aixm:trajectory>
+                        <aixm:Curve srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84" gml:id="pAixm07Gml">
+                            <gml:segments>
+                                <gml:Geodesic interpolation="geodesic">
+                                    <gml:posList>pAixmGeom</gml:posList>
+                                </gml:Geodesic>
+                            </gml:segments>
+                        </aixm:Curve>
+                    </aixm:trajectory>
+                    <aixm:arcCentre xsi:nil="true" nilReason="inapplicable"></aixm:arcCentre>
+                    <aixm:angle xsi:nil="true" nilReason="inapplicable"></aixm:angle>
+                    <aixm:distance xsi:nil="true" nilReason="inapplicable"></aixm:distance>
+                    <aixm:aircraftCategory xsi:nil="true" nilReason="inapplicable"></aixm:aircraftCategory>
+                    <aixm:holding xsi:nil="true" nilReason="inapplicable"></aixm:holding>
+                    <aixm:designSurface xsi:nil="true" nilReason="inapplicable"></aixm:designSurface>
+                    <aixm:annotation xsi:nil="true" nilReason="inapplicable"></aixm:annotation>
+                    <aixm:requiredNavigationPerformance>1</aixm:requiredNavigationPerformance>
+                    <aixm:minimumObstacleClearanceAltitude xsi:nil="true"></aixm:minimumObstacleClearanceAltitude>
+                    <aixm:departure xsi:nil="true"></aixm:departure>
+                    <aixm:condition xsi:nil="true"></aixm:condition>
+                </aixm:DepartureLegTimeSlice>
+            </aixm:timeSlice>
+        </aixm:DepartureLeg>
+    </aixm-message:hasMember>
+    

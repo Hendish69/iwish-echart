@@ -1,0 +1,73 @@
+    <aixm-message:hasMember>
+        <aixm:AirportHeliport gml:id="pAixm01ID">
+        <gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:AirportHeliportTimeSlice gml:id="pAixm02ID">
+                    <gml:validTime>
+                        <gml:TimeInstant gml:id="pAixm03ID">
+                            <gml:timePosition>pAixmTime</gml:timePosition>
+                        </gml:TimeInstant>
+                    </gml:validTime>
+                <aixm:interpretation>BASELINE</aixm:interpretation>
+                <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                <aixm:designator>pAixmDesig</aixm:designator>
+                <aixm:name>pAixmName</aixm:name>
+                <aixm:locationIndicatorICAO>pAixmIcao</aixm:locationIndicatorICAO>
+                <aixm:designatorIATA>pAixmIata</aixm:designatorIATA>
+                <aixm:type>pAixmType</aixm:type>
+                <aixm:certifiedICAO xsi:nil="true"/>
+                <aixm:privateUse>pAixmYN1</aixm:privateUse>
+                <aixm:controlType>pAixmJoint</aixm:controlType>
+                <aixm:fieldElevation uom="FT">pAixmElev</aixm:fieldElevation>
+                <aixm:fieldElevationAccuracy xsi:nil="true"/>
+                <aixm:verticalDatum xsi:nil="true"/>
+                <aixm:magneticVariation>pAixmDMag</aixm:magneticVariation>
+                <aixm:magneticVariationAccuracy xsi:nil="true"/>
+                <aixm:dateMagneticVariation>pAixmMagYear</aixm:dateMagneticVariation>
+                <aixm:magneticVariationChange xsi:nil="true"/>
+                <aixm:referenceTemperature uom="C">pAixmTemp</aixm:referenceTemperature>
+                <aixm:altimeterCheckLocation xsi:nil="true"/>
+                <aixm:secondaryPowerSupply>pAixmYN1</aixm:secondaryPowerSupply>
+                <aixm:windDirectionIndicator xsi:nil="true"/>
+                <aixm:landingDirectionIndicator xsi:nil="true"/>
+                <aixm:transitionAltitude uom="paixmUomTA">pAixmTA</aixm:transitionAltitude>
+                <aixm:transitionLevel uom="paixmUomTL">pAixmTL</aixm:transitionLevel>
+                <aixm:lowestTemperature xsi:nil="true"/>
+                <aixm:abandoned xsi:nil="true"/>
+                <aixm:certificationDate xsi:nil="true"/>
+                <aixm:certificationExpirationDate xsi:nil="true"/>
+                <aixm:servedCity>
+                    <aixm:City gml:id="pAixm04ID">
+                        <aixm:name>pAixmCity</aixm:name>
+                    </aixm:City>
+                </aixm:servedCity>
+                <aixm:responsibleOrganisation xsi:nil="true"/>
+                <aixm:ARP>
+                    <aixm:ElevatedPoint gml:id="pAixm05ID" srsDimension="2"
+                        srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                        <gml:pos>pAixmCord</gml:pos>
+                    </aixm:ElevatedPoint>
+                </aixm:ARP>
+                <aixm:aviationBoundary xsi:nil="true"/>
+                    <aixm:availability>
+                        <aixm:AirportHeliportAvailability gml:id="pAixm06ID">
+                            <aixm:timeInterval xsi:nil="true"/>
+                            <aixm:usage>
+                            <aixm:AirportHeliportUsage gml:id="pAixm07ID">
+                                <aixm:selection>
+                                <aixm:ConditionCombination gml:id="pAixm08ID">
+                                    <aixm:flight>
+                                    <aixm:FlightCharacteristic gml:id="pAixm09ID">
+                                        <aixm:rule>pAixmIFRVFR</aixm:rule>
+                                    </aixm:FlightCharacteristic>
+                                    </aixm:flight>
+                                </aixm:ConditionCombination>
+                                </aixm:selection>
+                            </aixm:AirportHeliportUsage>
+                            </aixm:usage>
+                        </aixm:AirportHeliportAvailability>
+                    </aixm:availability>
+                </aixm:AirportHeliportTimeSlice>
+            </aixm:timeSlice>
+        </aixm:AirportHeliport>
+    </aixm-message:hasMember>

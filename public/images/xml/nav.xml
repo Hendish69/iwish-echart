@@ -1,0 +1,42 @@
+    <aixm-message:hasMember>
+        <aixm:Navaid gml:id="pAixm01Gml">
+            <gml:identifier codeSpace="urn:uuid:">pAixmID</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:NavaidTimeSlice gml:id="pAixm02Gml">
+                    <gml:validTime>
+                        <gml:TimeInstant gml:id="pAixm03Gml">
+                            <gml:timePosition>pAixmTime1</gml:timePosition>
+                        </gml:TimeInstant>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:type>pAixmType</aixm:type>
+                    <aixm:designator>pAixmDesg</aixm:designator>
+                    <aixm:name>pAixmName</aixm:name>
+                    <aixm:flightChecked>pAixmFlight</aixm:flightChecked>
+                    <aixm:purpose>pAixmPurpose</aixm:purpose>
+                    <aixm:signalPerformance xsi:nil="true"/>
+                    <aixm:courseQuality xsi:nil="true"/>
+                    <aixm:integrityLevel xsi:nil="true"/>
+                        pAixmNavEquip
+                    <aixm:location>
+                        <aixm:ElevatedPoint gml:id="pAixm06Gml" srsDimension="2" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+                            <gml:pos>pAixmCord</gml:pos>
+                            <aixm:elevation uom="FT">pAixmElev</aixm:elevation>
+                        </aixm:ElevatedPoint>
+                    </aixm:location>
+                    <aixm:servedAirport xlink:href="urn:uuid:pAixmArptId"/>
+                    <aixm:availability>
+                        <aixm:NavaidOperationalStatus gml:id="pAixm07Gml">
+                            <aixm:timeInterval>
+                            <aixm:Timesheet gml:id="pAixm08Gml">
+                                <aixm:startTime>pAixmTime2</aixm:startTime>
+                                <aixm:endTime>pAixmTime3</aixm:endTime>
+                            </aixm:Timesheet>
+                            </aixm:timeInterval>
+                        </aixm:NavaidOperationalStatus>
+                    </aixm:availability>
+                </aixm:NavaidTimeSlice>
+            </aixm:timeSlice>
+        </aixm:Navaid>
+    </aixm-message:hasMember>

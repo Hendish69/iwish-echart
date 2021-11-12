@@ -1,0 +1,29 @@
+    <aixm-message:hasMember>
+        <aixm:GuidanceLine gml:id="paixm01gml">
+            <gml:identifier>pAixmIdent</gml:identifier>
+            <aixm:timeSlice>
+                <aixm:GuidanceLineTimeSlice gml:id="paixm02gml">
+                    <gml:validTime>
+                        <gml:TimePeriod gml:id="paixm03gml">
+                            <gml:beginPosition>pAixmTime</gml:beginPosition>
+                            <gml:endPosition indeterminatePosition="unknown"/>
+                        </gml:TimePeriod>
+                    </gml:validTime>
+                    <aixm:interpretation>BASELINE</aixm:interpretation>
+                    <aixm:sequenceNumber>1</aixm:sequenceNumber>
+                    <aixm:type>TWY</aixm:type>
+                    <aixm:extent>
+                        <aixm:ElevatedCurve srsName="urn:ogc:def:crs:OGC:1.3:CRS84" gml:id="paixm04gml">
+                            <gml:segments>
+                                <gml:LineStringSegment>
+                                    <gml:posList>pAixmLine</gml:posList>
+                                </gml:LineStringSegment>
+                            </gml:segments>
+                            <aixm:elevation uom="FT">pAixmElev</aixm:elevation>
+                        </aixm:ElevatedCurve>
+                    </aixm:extent>
+                </aixm:GuidanceLineTimeSlice>
+            <aixm:servedAirport xlink:href="urn:uuid:pAixmArptId"/>
+            </aixm:timeSlice>
+        </aixm:GuidanceLine>
+    </aixm-message:hasMember>

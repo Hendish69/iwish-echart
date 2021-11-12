@@ -1,0 +1,33 @@
+		<aixm-message:hasMember>
+			<aixm:DesignatedPoint gml:id="pAixm01ID">
+			<gml:identifier codeSpace="urn:uuid:">pAixmWPTID</gml:identifier>
+				<aixm:timeSlice>
+					<aixm:DesignatedPointTimeSlice gml:id="pAixm02ID">
+						<gml:validTime>
+							<gml:TimePeriod gml:id="pAixm03ID">
+								<gml:beginPosition>pAixmTime</gml:beginPosition>
+									<gml:endPosition />
+							</gml:TimePeriod>
+						</gml:validTime>
+					<aixm:interpretation>BASELINE</aixm:interpretation>
+					<aixm:sequenceNumber>1</aixm:sequenceNumber>
+					<aixm:correctionNumber>0</aixm:correctionNumber>
+					<aixm:featureLifetime>
+						<gml:TimePeriod gml:id="pAixm04ID">
+							<gml:beginPosition>pAixmBegin</gml:beginPosition>
+							<gml:endPosition />
+						</gml:TimePeriod>
+					</aixm:featureLifetime>
+					<aixm:designator>pAixmIdent</aixm:designator>
+					<aixm:type>pAixmType</aixm:type>
+					<aixm:name>pAixmName</aixm:name>
+					<aixm:location>
+						<aixm:Point gml:id="pAixm05ID" srsName="urn:ogc:def:crs:OGC:1.3:CRS84">
+							<gml:pos>pAixmCord</gml:pos>
+						</aixm:Point>
+					</aixm:location>
+					</aixm:DesignatedPointTimeSlice>
+				</aixm:timeSlice>
+			</aixm:DesignatedPoint>
+		</aixm-message:hasMember>
+		
