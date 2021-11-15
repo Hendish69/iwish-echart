@@ -3,8 +3,8 @@
         <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
             <div class="brand-logo pb-5">
                 <a href="/" class="logo-link w-100">
-                    <img class="logo-light logo-img logo-img-lg w-100" src="{{ url('/template/images/last_logo.png') }}" srcset="{{ url('/template/images/last_logo.png 2x') }}" alt="logo" style="max-height:80px!important">
-                    <img class="logo-dark logo-img logo-img-lg w-100" src="{{ url('/template/images/last_logo.png') }}" srcset="{{ url('/template/images/last_logo.png') }}" alt="logo-dark" style="max-height:80px!important">
+                    <img class="logo-light logo-img logo-img-lg w-100" src="{{ url('/template/images/last_logo.png') }}" srcset="{{ url('/template/images/last_logo.png 2x') }}" alt="logo" style="max-height:130px!important">
+                    <img class="logo-dark logo-img logo-img-lg w-100" src="{{ url('/template/images/last_logo.png') }}" srcset="{{ url('/template/images/last_logo.png') }}" alt="logo-dark" style="max-height:130px!important">
                 </a>
                 <div class="nk-block-des w-100 text-center">
                     <p>Ministry of Transportation Republic of Indonesia</p>
