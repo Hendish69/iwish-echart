@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <div class="form-label-group">
                         <label class="form-label" for="password">{{ __('Passcode') }}</label>
-                        <a class="link link-primary link-sm" tabindex="-1" href="{{ route('password.request') }}">{{ __('auth.forgot') }}</a>
+                        <!-- <a class="link link-primary link-sm" tabindex="-1" href="{{ route('password.request') }}">{{ __('auth.forgot') }}</a> -->
                     </div>
                     <div class="form-control-wrap">
                         <a tabindex="-1" href="#" class="form-icon form-icon-right passcode-switch" data-target="password">
