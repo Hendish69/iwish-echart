@@ -74,7 +74,7 @@
                 </div>
             </form><!-- form -->
             @if (Route::has('register'))
-                <div class="form-note-s2 pt-4"> New on our platform? <a href="{{ route('register') }}">Create an account</a>
+                <!-- <div class="form-note-s2 pt-4"> New on our platform? <a href="{{ route('register') }}">Create an account</a> -->
             @endif
             </div>
             {{-- include('partials.socials-icons') --}}
