@@ -127,7 +127,8 @@ class RegisterController extends Controller
             // 'activated'         => $activated,
             'activated'         => true,
         ]);
-
+        // by pass activation
+        $role = Role::where('slug', '=', 'user')->first();
         $user->attachRole($role);
         // $this->initiateEmailActivation($user);
  
