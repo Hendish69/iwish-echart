@@ -124,12 +124,14 @@ class RegisterController extends Controller
             'password'          => md5($data['password']),
             'token'             => str_random(64),
             'signup_ip_address' => $ipAddress->getClientIp(),
-            'activated'         => $activated,
+            // 'activated'         => $activated,
+            'activated'         => true,
         ]);
-
+        // by pass activation
+        $role = Role::where('slug', '=', 'user')->first();
         $user->attachRole($role);
-        $this->initiateEmailActivation($user);
-
+        // $this->initiateEmailActivation($user);
+ 
         $profile = new Profile();
         $user->profile()->save($profile);
         $user->save();

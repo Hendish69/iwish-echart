@@ -74,9 +74,9 @@
                 </div>
             </form><!-- form -->
             @if (Route::has('register'))
-                <!-- <div class="form-note-s2 pt-4"> New on our platform? <a href="{{ route('register') }}">Create an account</a> -->
+                <div class="form-note-s2 pt-4"> New on our platform? <a href="{{ route('register') }}">Create an account</a></div>
             @endif
-            <!-- </div> -->
+            
             {{-- include('partials.socials-icons') --}}
             {{-- <div class="text-center mt-5">
                 <span class="fw-500">I don't have an account? <a href="#">Try 15 days free</a></span>
