@@ -46,8 +46,27 @@
                     </div>
                 </div>
             </div>
+            <div class="panel-body mt-3" id="chartaffect" style="visibility: hidden">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Affect to Charts</h5>
+                        <table class="table table-bordered table-hover" id="table-content">
+                            <thead class="thead-dark" align="center">
+                                <tr>
+                                    <!-- <th></th> -->
+                                    <th>No</th>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chartlist">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-                <div class="card-tools">
+            <div class="card-tools mt-3">
                 <a onclick="backtolist()" class="btn btn-dim btn-light"><i class="icon ni ni-reply-fill"></i> Back</a>
             </div>
         </div>
@@ -57,13 +76,13 @@
 @section('footer_scripts')
 
 <script type="text/javascript">
-
+$("#chartaffect").hide();
 var ret =@json($data);enr=[];enrtemp=[];
 // console.log(ret)
 
 
 
-var isi=[];viewcontent=[];
+var isi=[];viewcontent=[];affectchart=[];
 switch (ret.table) {
     case 'arpt':
         airport()
@@ -1009,7 +1028,577 @@ function navaid(temp){
     })
 
 }
+function checklistchart(isichart){
+    var ret=false;
+    affectchart.forEach(c=>{
+        if (isichart[5].chart_name==c[5].chart_name){
+            // console.log(c,'checklistchart')
+            ret=true;
 
+        }
+    })
+    return ret;
+}
+
+
+
+function getaffectchart(content,tbl){
+    if (ret.lstchart.length >= 0){
+    // console.log(ret.lstchart,content)
+        switch (tbl) {
+            case 'chart_content':
+                    var nch=0;
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content.item)
+                        var isichart=[];
+                        if (content.adc=='Y' &&  (c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true) &&  c.label.includes('AD 2.24-1')==true){
+                            isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+
+                        }
+                        if (content.pgdc=='Y' &&  c.label.includes('AD 2.24-2')==true){
+                            isichart=[{seq:2},{no:nch},{chart_type:'APDC'},{chart_code:'AD 2.24-2'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (content.gmc=='Y' &&  c.label.includes('AD 2.24-3')==true){
+                            isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+
+                            };
+                        }
+                        if (content.aoc=='Y' &&  c.label.includes('AD 2.24-4')==true){
+                            isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                        };
+                        }
+                        if (content.patc=='Y' &&  c.label.includes('AD 2.24-5')==true){
+                            isichart=[{seq:5},{no:nch},{chart_type:'PATC'},{chart_code:'AD 2.24-5'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                        };
+                        }
+                        if (content.area=='Y' &&  (c.label.includes('AD 2.24-6')==true || c.label.includes('AD 2.24-8')==true)){
+                            if (c.label.includes('AD 2.24-6')==true ){
+                                isichart=[{seq:6},{no:nch},{chart_type:'AREA-DEP'},{chart_code:'AD 2.24-6'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+
+                            if (c.label.includes('AD 2.24-8')==true ){
+                                isichart=[{seq:7},{no:nch},{chart_type:'AREA-ARR'},{chart_code:'AD 2.24-8'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+                            
+                        }
+                        if (content.star=='Y' &&  c.label.includes('AD 2.24-9')==true){
+                            // if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:9},{no:nch},{chart_type:'STAR'},{chart_code:'AD 2.24-9'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            // }
+                        }
+                        if (content.sid=='Y' &&  c.label.includes('AD 2.24-7')==true){
+                            // if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:8},{no:nch},{chart_type:'SID'},{chart_code:'AD 2.24-7'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            // }
+                        }
+                        if (content.smac=='Y' &&  c.label.includes('AD 2.24-10')==true){
+                            isichart=[{seq:10},{no:nch},{chart_type:'SMAC'},{chart_code:'AD 2.24-10'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (content.iac=='Y' &&  c.label.includes('AD 2.24-11')==true){
+                            // if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            // }
+                        }
+                        if (content.vac=='Y' &&  c.label.includes('AD 2.24-12')==true){
+                            isichart=[{seq:12},{no:nch},{chart_type:'VAC'},{chart_code:'AD 2.24-12'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                    })
+                break;
+        // isichart=[{seq:1},{chart_type:'ADC'},{chart_code:'AD 2.24-1'}]
+                case 'apron':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        if (c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true){
+                                isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                        }
+                        if (c.label.includes('AD 2.24-2')==true){
+                            isichart=[{seq:2},{no:nch},{chart_type:'APDC'},{chart_code:'AD 2.24-2'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if ( c.label.includes('AD 2.24-3')==true){
+                            isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+
+                            };
+                        }
+                    })
+                break;
+                case 'obstacle':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        if (c.label.includes('AD 2.24-4')==true){
+                            isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if ( c.label.includes('AD 2.24-11')==true){
+                            isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+
+                            };
+                        }
+                    })
+                break;
+                case 'rwy':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        if (content[3].item=='thr_low' || content[3].item=='thr_high'){
+                            if ((c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true)){
+                                isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                            if (c.label.includes('AD 2.24-2')==true){
+                                isichart=[{seq:2},{no:nch},{chart_type:'APDC'},{chart_code:'AD 2.24-2'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                            if (c.label.includes('AD 2.24-3')==true){
+                                isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+                            if (c.label.includes('AD 2.24-3')==true){
+                                isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+
+                            if (c.label.includes('AD 2.24-4')==true){
+                                isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+                       
+                            if ((c.label.includes('AD 2.24-6')==true || c.label.includes('AD 2.24-8')==true)){
+                                if (c.label.includes('AD 2.24-6')==true ){
+                                    isichart=[{seq:6},{no:nch},{chart_type:'AREA-DEP'},{chart_code:'AD 2.24-6'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+
+                                }
+
+                                if (c.label.includes('AD 2.24-8')==true ){
+                                    isichart=[{seq:7},{no:nch},{chart_type:'AREA-ARR'},{chart_code:'AD 2.24-8'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+
+                                }
+                                
+                            }
+                            if (c.label.includes('AD 2.24-9')==true){
+                                if (c.label.includes('CODING TABLE')==false){
+                                    isichart=[{seq:9},{no:nch},{chart_type:'STAR'},{chart_code:'AD 2.24-9'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+                                }
+                            }
+                            if (c.label.includes('AD 2.24-7')==true){
+                                if (c.label.includes('CODING TABLE')==false){
+                                    isichart=[{seq:8},{no:nch},{chart_type:'SID'},{chart_code:'AD 2.24-7'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+                                }
+                            }
+                            if (c.label.includes('AD 2.24-10')==true){
+                                isichart=[{seq:10},{no:nch},{chart_type:'SMAC'},{chart_code:'AD 2.24-10'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                            if (c.label.includes('AD 2.24-11')==true){
+                                if (c.label.includes('CODING TABLE')==false){
+                                    isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+                                }
+                            }
+                            if (c.label.includes('AD 2.24-12')==true){
+                                isichart=[{seq:12},{no:nch},{chart_type:'VAC'},{chart_code:'AD 2.24-12'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (content[3].item=='length' || content[3].item=='width' || content[3].item=='pcn' || content[3].item=='surface'){
+                            if (c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true){
+                                    isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                    if (checklistchart(isichart)==false){
+                                        affectchart.push(isichart)
+                                        nch++
+                                    };
+
+                            }
+                            if (c.label.includes('AD 2.24-4')==true){
+                                isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+
+                    })
+                break;
+                case 'thr':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        // var thrfield=['RWY ', 'LAT','LON', 'MAG BRG','TRUE BRG','THR ELEV', 'TDZ ELEV','GEOID','SWY LENGTH','SWY WIDTH','CWY LENGTH', 'CWY WIDTH','RESA LENGTH', 'RESA WIDTH',   'SLOPE LONGITUDE','SLOPE TRANS','DISP LENGTH',  'DISP ELEV', 'DISP LAT','DISP LON','REMARKS'];
+                        if (c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true){
+                                isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                        }
+                        if (c.label.includes('AD 2.24-4')==true){
+                            isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (content[3].item=='TRUE BRG' || content[3].item=='LAT' || content[3].item=='LON' || content[3].item=='THR ELEV'){
+                            // console.log(content,'contentcontentcontent')
+                            if ( c.label.includes('AD 2.24-11')==true){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+
+                        }
+                    })
+                break;
+                case 'declare':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                       
+                        if (c.label.includes('AD 2.24-3')==true){
+                            isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if ( c.label.includes('AD 2.24-4')==true){
+                            isichart=[{seq:4},{no:nch},{chart_type:'AOC'},{chart_code:'AD 2.24-4'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+
+                            };
+                        }
+                    })
+                break;
+                case 'lighting':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        if (c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true){
+                                isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                        }
+                        if (c.label.includes('AD 2.24-3')==true){
+                            isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (content.item=='apch_lgt_type_len'){
+                            if ( c.label.includes('AD 2.24-11')==true){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+
+                        }
+                    })
+                break;
+                case 'comm':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                        if ((c.label.includes('AERODROME')==true || c.label.includes('Aerodrome')==true)){
+                            isichart=[{seq:1},{no:nch},{chart_type:'ADC'},{chart_code:'AD 2.24-1'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+
+                        }
+                        if (c.label.includes('AD 2.24-2')==true){
+                            isichart=[{seq:2},{no:nch},{chart_type:'APDC'},{chart_code:'AD 2.24-2'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (c.label.includes('AD 2.24-3')==true){
+                            isichart=[{seq:3},{no:nch},{chart_type:'GMC'},{chart_code:'AD 2.24-3'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+
+                            };
+                        }
+                       
+                       
+                        if ((c.label.includes('AD 2.24-6')==true || c.label.includes('AD 2.24-8')==true)){
+                            if (c.label.includes('AD 2.24-6')==true ){
+                                isichart=[{seq:6},{no:nch},{chart_type:'AREA-DEP'},{chart_code:'AD 2.24-6'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+
+                            if (c.label.includes('AD 2.24-8')==true ){
+                                isichart=[{seq:7},{no:nch},{chart_type:'AREA-ARR'},{chart_code:'AD 2.24-8'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+                            
+                        }
+                        if (c.label.includes('AD 2.24-9')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:9},{no:nch},{chart_type:'STAR'},{chart_code:'AD 2.24-9'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-7')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:8},{no:nch},{chart_type:'SID'},{chart_code:'AD 2.24-7'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-10')==true){
+                            isichart=[{seq:10},{no:nch},{chart_type:'SMAC'},{chart_code:'AD 2.24-10'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (c.label.includes('AD 2.24-11')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-12')==true){
+                            isichart=[{seq:12},{no:nch},{chart_type:'VAC'},{chart_code:'AD 2.24-12'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                    })
+                break;
+                case 'nav':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                       
+                        if ((c.label.includes('AD 2.24-6')==true || c.label.includes('AD 2.24-8')==true)){
+                            if (c.label.includes('AD 2.24-6')==true ){
+                                isichart=[{seq:6},{no:nch},{chart_type:'AREA-DEP'},{chart_code:'AD 2.24-6'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+
+                            if (c.label.includes('AD 2.24-8')==true ){
+                                isichart=[{seq:7},{no:nch},{chart_type:'AREA-ARR'},{chart_code:'AD 2.24-8'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+
+                            }
+                            
+                        }
+                        if (c.label.includes('AD 2.24-9')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:9},{no:nch},{chart_type:'STAR'},{chart_code:'AD 2.24-9'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-7')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:8},{no:nch},{chart_type:'SID'},{chart_code:'AD 2.24-7'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-10')==true){
+                            isichart=[{seq:10},{no:nch},{chart_type:'SMAC'},{chart_code:'AD 2.24-10'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                        if (c.label.includes('AD 2.24-11')==true){
+                            if (c.label.includes('CODING TABLE')==false){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+                                };
+                            }
+                        }
+                        if (c.label.includes('AD 2.24-12')==true){
+                            isichart=[{seq:12},{no:nch},{chart_type:'VAC'},{chart_code:'AD 2.24-12'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                            if (checklistchart(isichart)==false){
+                                affectchart.push(isichart)
+                                nch++
+                            };
+                        }
+                    })
+                break;
+                case 'ils':
+                    ret.lstchart.forEach(c=>{
+                            // console.log(content)
+                        var isichart=[];
+                       
+                            if ( c.label.includes('AD 2.24-11')==true){
+                                isichart=[{seq:11},{no:nch},{chart_type:'IAC'},{chart_code:'AD 2.24-11'},{change:content.item},{chart_name:c.name},{status:content.status},{arpt_ident:content.arpt_ident}]
+                                if (checklistchart(isichart)==false){
+                                    affectchart.push(isichart)
+                                    nch++
+
+                                };
+                            }
+
+                        
+                    })
+                break;
+        }
+    }
+    
+    
+}
 function airport(){
 // console.log(ret)
     $('#arpttitle').html(ret.airport[0].icao + ' - ' + ret.airport[0].city_name + '/' + ret.airport[0].arpt_name)
@@ -1037,12 +1626,13 @@ function airport(){
             var pch=t.category.split(' '); var pcha=pch[1].split('.')
             // console.log(pch)
         if (oldval !== t.content ){
+            getaffectchart(t,'chart_content');
             isi=[{category:t.category},{id:''},{field:t.category_id},{item:t.item},{curvalue:oldval},{reqvalue:t.content},{status:sts},{seq:Number(pcha[1])},{arpt_ident:t.arpt_ident},{table:'eaip_chart_content_temp'}]
             viewcontent.push(isi)
 
         }
     })
-    console.log(viewcontent);
+    console.log(viewcontent,'viewcontent Airport');
 
    
     ret.apron.forEach(t=>{
@@ -1082,6 +1672,7 @@ function airport(){
                 // }
                 if (sts=='R'){
                     isi=[{category:subid},{id:ident},{field:t.id},{item:a},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:pcha},{arpt_ident:t.arpt_ident},{table:'eaip_apron_twy_temp'}]
+                    getaffectchart(isi,'apron');
                     viewcontent.push(isi)
                 
                 }
@@ -1115,6 +1706,7 @@ function airport(){
                 }
                 if (sts=='R'){
                     isi=[{category:subid},{id:ident},{field:t.id},{item:a},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:8.3},{arpt_ident:t.arpt_ident_gate},{table:'eaip_arpt_gate_temp'}]
+                    getaffectchart(isi,'apron');
                     viewcontent.push(isi)
                   
                 }
@@ -1228,6 +1820,7 @@ function airport(){
             // }
             if (sts=='R'){
                 isi=[{category:subid},{id:ident},{field:t.id},{item:a},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:10},{arpt_ident:t.arpt_ident},{table:'arpt_obstacle_temp'}]
+                getaffectchart(isi,'obstacle');
                 viewcontent.push(isi)
             
             }
@@ -1266,6 +1859,8 @@ function airport(){
             // }
             if (sts=='R'){
                 isi=[{category:subid},{id:'RWY ' + t.rwy_ident},{field:t.id},{item:a},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:12},{arpt_ident:t.arpt_ident},{table:'arpt_rwy_temp'}]
+                
+                getaffectchart(isi,'rwy');
                 viewcontent.push(isi)
                 
 
@@ -1335,6 +1930,7 @@ function airport(){
             }
             if (sts=='R'){
                 isi=[{category:subid},{id:'RWY ' + t.rwy_ident},{field:t.id},{item:thrfield[nn]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:12.1},{arpt_ident:t.arpt_ident},{table:'arpt_rwy_physical_temp'}]
+                getaffectchart(isi,'thr');
                 viewcontent.push(isi)
             
             }
@@ -1374,6 +1970,7 @@ function airport(){
 
             if (sts=='R'){
                 isi=[{category:subid},{id:'RWY ' + t.rwy_ident},{field:t.id},{item:thrfield[nt]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:13},{arpt_ident:t.arpt_ident},{table:'arpt_rwy_physical_temp'}]
+                getaffectchart(isi,'declare');
                 viewcontent.push(isi)
             }
             nt++;
@@ -1415,6 +2012,7 @@ function airport(){
             // }
             if (sts=='R'){
                 isi=[{category:subid},{id:'RWY ' + t.rwy_ident},{field:t.id},{item:fieldtrue[iix]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:14},{arpt_ident:t.arpt_ident},{table:'eaip_rwy_lgt_temp'}]
+                getaffectchart(isi,'lighting');
                 viewcontent.push(isi)
                 iix++
             }
@@ -1462,6 +2060,7 @@ function airport(){
             // }
             if (sts=='R'){
                 isi=[{category:subid},{id: t.types},{field:t.id},{item:a},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:18},{arpt_ident:t.arpt_ident},{table:'freq_used_temp'}]
+                getaffectchart(isi,'comm');
                 viewcontent.push(isi)
 
             }
@@ -1516,6 +2115,7 @@ function airport(){
             // var isi=[];
             if (sts=='R'){
                 isi=[{category:subid},{id: ident},{field:t.id},{item:fldenr411[n]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:19},{arpt_ident:t.arpt_ident},{table:'navaid_temp'}]
+                getaffectchart(isi,'nav');
                 viewcontent.push(isi)
             }
             n++
@@ -1578,6 +2178,7 @@ function airport(){
             
             if (sts=='R'){
                 isi=[{category:subid},{id:ident},{field:t.id},{item:fldenr411[kk]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:19},{arpt_ident:t.arpt_ident},{table:'arpt_ils_temp'}]
+                getaffectchart(isi,'ils');
                 viewcontent.push(isi)
             }
             kk++;
@@ -1631,6 +2232,7 @@ function airport(){
             
             if (sts=='R'){
                 isi=[{category:subid},{id:ident},{field:t.id},{item:fldenr411[m]},{curvalue:fcurr},{reqvalue:ftem},{status:t.status },{seq:19},{arpt_ident:t.arpt_ident},{table:'arpt_marker_temp'}]
+                getaffectchart(isi,'ils');
                 viewcontent.push(isi)
             }
             m++
@@ -1639,7 +2241,9 @@ function airport(){
     })
     var no=0;subid='';
     viewcontent.sort((a,b) => (a[7].seq > b[7].seq) ? 1 : ((b[7].seq > a[7].seq) ? -1 : 0));
+    affectchart.sort((a,b) => (a[0].seq > b[0].seq) ? 1 : ((b[0].seq > a[0].seq) ? -1 : 0));
     console.log(viewcontent,'viewcontent');
+    console.log( affectchart,' affectchart');
     var idx=-1;
     viewcontent.forEach(v=>{
         idx++
@@ -1659,6 +2263,24 @@ function airport(){
         $("#detaillist").append(hasil);
         subid=v[0].category;
     })
+    //chartaffect
+    no=0;
+    if (affectchart.length >0){
+        aboutvol("chartaffect")
+        var sts='Request';
+        affectchart.forEach(v=>{
+            // console.log(v)
+            if (v[5].status=='N'){
+                sts='New Data';
+            }
+            no++;
+            var  hasil= '<tr>'+
+            '</td>'+
+            '<td>'+no+'</td><td>' + v[2].chart_type + '</td><td>' + v[5].chart_name + '</td><td>' + sts + '</td></tr>'
+            $("#chartlist").append(hasil);
+            
+        })
+    }
 }
 
 function getcord(point){

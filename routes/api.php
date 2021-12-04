@@ -294,7 +294,7 @@ Route::get('/eaip/getrequestnavaid/{id}/{tbl}', 'App\Http\Controllers\Api\EaipCo
 Route::get('/eaip/getrequestils/{id}/{tbl}', 'App\Http\Controllers\Api\EaipController@getcontentrequestils');
 Route::get('/eaip/getrequestmarker/{id}/{tbl}', 'App\Http\Controllers\Api\EaipController@getcontentrequestmarker');
 
-
+Route::get('/eaip/aip', 'App\Http\Controllers\Api\EaipController@Gettd_aip');
 Route::get('/eaip/getutc', 'App\Http\Controllers\Api\EaipController@getutctime');
 Route::get('/eaip/getpaper', 'App\Http\Controllers\Api\EaipController@Getpaper');
 Route::get('/eaip/codaip', 'App\Http\Controllers\Api\EaipController@Codaip');

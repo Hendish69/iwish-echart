@@ -56,6 +56,15 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
+                        <a href="/vfr_planning" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-notes-alt"></em></span>
+                            <span class="nk-menu-text">VFR Planning</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">supporting data</h6>
+                    </li><!-- .nk-menu-heading -->
+                    <li class="nk-menu-item">
                         <a href="/terminalwaypoint" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-wallet-out"></em></span>
                             <span class="nk-menu-text">Terminal Waypoint</span>
@@ -80,12 +89,24 @@
                         </a>
                     </li>
                      
-                     <li class="nk-menu-item">
-                        <a href="/vfr_planning" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-notes-alt"></em></span>
-                            <span class="nk-menu-text">VFR Planning</span>
+                     
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">Data history</h6>
+                    </li><!-- .nk-menu-heading -->
+                    <li class="nk-menu-item">
+                        <a href="/DataRequest" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-update"></em></span>
+                            <span class="nk-menu-text">Data Updating</span>
                         </a>
                     </li>
+
+                    <li class="nk-menu-item">
+                        <a href="/datahistory" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-search"></em></span>
+                            <span class="nk-menu-text">Data Tracking</span>
+                        </a>
+                    </li>
+
                     @endpermission
                     
                     @role('admin')

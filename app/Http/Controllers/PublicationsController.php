@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Route;
 use App\Models\Api\RawdataPubAtt as Upload;
 use App\Models\Api\PdfFile as chart;
+use App\Models\Api\Td_aip as aip;
 use App\Models\Api\RawdataPubChart as PubChart;
 use Session;
 use Image;
@@ -111,8 +112,28 @@ class PublicationsController extends Controller
         return view('pages.publications.eaip.tablehtml',$data);
     }
     
+    public function datahistory()
+    {
+        $originalInput=Req::input();
+        $user = Auth::user();
+       
+        if ($user->isAdmin()) {
+            // return view('pages.admin.home');
+        }
+        // dd($user);
+        $data['source']= aip::selectRaw('nr_yr')
+        ->where('nr_yr', 'like', '%AMDT%')
+        ->groupby('nr_yr')
+        ->orderby('nr_yr', 'desc')
+            ->get();
+// dd($data);
+        return view('pages.publications.datahistory',$data);
+    }
     public function request()
     {
+        
+        //    dd($data);
+    
         $originalInput=Req::input();
         $user = Auth::user();
         $data['backto']='';
@@ -122,8 +143,12 @@ class PublicationsController extends Controller
             // return view('pages.admin.home');
         }
         // dd($user);
-        $data['request'] = getDataApi($originalInput, '/api/pub/rawdata?sort=update_date:desc');
+        $data['request'] = getDataApi($originalInput, '/api/pub/rawdata?tablename=arpt&sort=update_date:desc');
         //    dd($data);
+
+    $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+
+
         $data['tbreff']  = getDataApi($originalInput, '/api/tablereff?reff_group=0020&sort=reff_order:asc');
         $data['piapusat']= User::selectRaw('users.id,name,email,first_name,last_name, role_user.role_id')
                             ->rightJoin('role_user','role_user.user_id','users.id')
@@ -160,7 +185,7 @@ class PublicationsController extends Controller
         $id=$infox[0];
         $data['table']=$infox[1];
        
-        // dd($info);
+        // dd($info,$id,$infox[1]);
         // Route::get('/eaip/getrequestdetail/{id}/{tbl}', 'App\Http\Controllers\Api\EaipController@getcontentrequestdetail');
         // Route::get('/eaip/getrequestapron/{id}/{tbl}', 'App\Http\Controllers\Api\EaipController@getcontentrequestapron');
         // Route::get('/eaip/getrequestparkingstand/{id}/{tbl}', 'App\Http\Controllers\Api\EaipController@getcontentrequestparkingstand');
@@ -215,6 +240,33 @@ class PublicationsController extends Controller
                     // var_dump($ky);
                     $data[$ky.'_curr']= getDataApi($originalInput, $va);
                 }
+                $icao= $data['airport'][0]->icao;
+                if (strlen($icao)==2 || $icao==''){
+                    $sql='api/eaip/aip?aerodrome='.$data['airport'][0]->arpt_name;
+                }else{
+                    if ($data['airport'][0]->vol=='2'){
+                        $sql='api/eaip/aip?icao_code='.$icao.'&id_aip_induk=41';
+                    }else  if ($data['airport'][0]->vol=='3'){
+                        $sql='api/eaip/aip?icao_code='.$icao.'&id_aip_induk=45';
+                    }else{
+                        $sql='api/eaip/aip?icao_code='.$icao;
+                    }
+                    
+                }
+                $data['chart'] = getDataApi($originalInput, 'api/airport/chart?arpt_ident='.$id.'&deleted=0&sort=seq:asc');
+                // dd(strlen($icao),$icao,$data['chart'],$sql);
+                $data['pdfchart'] = getDataApi($originalInput,  $sql);
+            // dd($data['pdfchart'],$sql);
+            if (!empty($data['pdfchart'])){
+                $idkode= $data['pdfchart'][0]->id_aip;
+                $data['lstchart'] = getDataApi($originalInput, 'api/eaip/aip?id_aip_induk='.$idkode.'&is_active=1&sort=no_urut:asc');
+
+            }else{
+                $data['lstchart']=[];
+            }
+        
+                $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+                // $data['chart']= getDataApi($originalInput, '/api/airport/chart?arpt_ident='.$id); 
                 // dd($data);
                 break;
             case 'navaid':
@@ -279,9 +331,9 @@ class PublicationsController extends Controller
                 }
 
                 break;
-            // dd($data);
-
-        }
+                
+            }
+            // dd($data['chart'],$data['lstchart']);
         $return['data']=$data;
     //    dd($data);
         return view('pages.publications.requestdetail',$return);
@@ -834,6 +886,12 @@ class PublicationsController extends Controller
                 if ($file->isValid()) {
                     $fileName = time().'_'.$file->getClientOriginalName();  
                     $fileName1 = $file->getClientOriginalName();
+                    if (strlen($fileName) > 100){
+                        $fileName= substr($fileName,0,100);
+                    }
+                    if (strlen($fileName1) > 100){
+                        $fileName1= substr($fileName1,0,100);
+                    }
                     $file->move($this->path,$fileName); 
                     $files[] = [
                         'filename' => $fileName,

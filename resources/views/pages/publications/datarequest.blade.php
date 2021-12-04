@@ -70,7 +70,7 @@ float:left;
         <div class="nk-content-body">
             <div id="base" class="nk-content-wrapper">
                 <div class="panel panel-default">
-                    <h6>Request of Data Changes</h6>
+                    <h6>Data Updating</h6>
                     <input type="hidden" id="backto" value="{{Session::get('backto')}}">
                 </div> <!-- <div class="form-check bg-black"> -->
                 <!-- <div class="runtext-container">
@@ -154,7 +154,7 @@ var arp =@json($request); pubdate=[];tablerequest='';
 var tbreff =@json($tbreff);
 var piapusat =@json($piapusat);dnp =@json($dnp);airnav =@json($airnav);
 var roles="{{Auth::user()->roles[0]->id}}";isoriginator=false;ispiawilayah=false;ispiapusat=false;isdnp=false;isAirnavpusat=false;
-// console.log(userid)
+
 var piaid= null;collectchart=[];
 if (roles=="18" || roles=="19"){
     if ("{{Auth::user()->pia_id}}"==''){
@@ -291,7 +291,7 @@ function listdata(id=null){
             
                     var status='';city='';
                     if (a.tablename=='arpt' && a.fieldid !== null ){
-                        if (a.airport.length > 0){
+                        if (a.airport.length > 0  ){
                             var arpt=a.airport[0];
                             if (arpt.auth.length > 0){
                                 if (arpt.auth[0].id==piaid || roles=="20" || roles=="21" || roles =="1"){
@@ -390,16 +390,16 @@ function listdata(id=null){
                         }
                     if (tampil==true){
                     // console.log('actionnext',actionreq+'$'+ actionreqid + '$'+ a.rawdata_id);
-                        hasil = '<tr class="nk-tb-item"><td class="tb-tnx-action"><div class="dropdown"><a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-12"> <ul class="link-list-plain">'+
-                        '<a class="btn btn-dim btn-secondary" id="'+ a.fieldid  + '" onclick="checkstatus(this.id)"><em class="icon ni ni-alarm-alt"></em>Check Status</a>';
+                        hasil = '<tr class="nk-tb-item"><td class="tb-tnx-action"><div class="dropdown"><a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown"><em class="icon ni ni-more-h"></em></a><div class="dropdown-menu dropdown-menu-left dropdown-menu-sm-12"> <ul class="link-list-plain">';
+                        // '<a class="btn btn-dim btn-secondary" id="'+ a.fieldid  + '" onclick="checkstatus(this.id)"><em class="icon ni ni-alarm-alt"></em>Check Status</a>';
                         if (showbutton==true){
-                            hasil += '<a class="btn btn-dim btn-light '+buttonenable+'" id="'+ actionreq+'$'+ actionreqid + '$'+ a.rawdata_id + '" onclick="actionnext(this.id)"><em class="icon ni ni-activity-round-fill"></em>'+ actionreq +'</a>';
-                            if (rollback==true){
-                                hasil +=  '<a class="btn btn-dim btn-light '+buttonenable+'" id="'+ actionback+'$'+ actionreqid + '$'+ a.rawdata_id + '" onclick="actionrollback(id)"><em class="icon ni ni-activity-round-fill"></em>'+ actionback +'</a>';
+                            // hasil += '<a class="btn btn-dim btn-light '+buttonenable+'" id="'+ actionreq+'$'+ actionreqid + '$'+ a.rawdata_id + '" onclick="actionnext(this.id)"><em class="icon ni ni-activity-round-fill"></em>'+ actionreq +'</a>';
+                        //     if (rollback==true){
+                        //         hasil +=  '<a class="btn btn-dim btn-light '+buttonenable+'" id="'+ actionback+'$'+ actionreqid + '$'+ a.rawdata_id + '" onclick="actionrollback(id)"><em class="icon ni ni-activity-round-fill"></em>'+ actionback +'</a>';
                                 
-                            }
+                        //     }
                             hasil +='<a class="btn btn-dim btn-dark" id="'+ a.fieldid  + '@' + a.tablename+ '" onclick="viewdetail(id)"><em class="icon ni ni-package-fill"></em>View</a>'+
-                            '<a class="btn btn-dim btn-danger" id="'+ a.rawdata_id+ '" onclick="Remove(id)"><em class="icon ni ni-delete-fill"></em> Remove</a>'
+                            '<a class="btn btn-dim btn-danger" id="'+ a.rawdata_id+ '" onclick="Remove(id)"><em class="icon ni ni-delete-fill"></em> Remove</a>';
                 
                         }
                         if (userid==752){

@@ -20,6 +20,9 @@ use App\Models\Api\Abbr;
 use App\Models\Api\AbbrTemp;
 use App\Models\Api\Content;
 use App\Models\Api\SysMenu;
+use App\Models\Api\Td_aip;
+use App\Models\Api\CodChartTypes;
+
 use App\ApiResponse;
 use Bosnadev\Database\Schema\Builder;
 use Doctrine\DBAL\Schema\Table;
@@ -147,6 +150,13 @@ class EaipController extends Controller
 	{
 
         $results = $rpm->process($request, Abbr::query());
+        return ApiResponse::success($results);
+    }
+
+    public function Gettd_aip(Request $request,RequestParamHandler $rpm)
+	{
+
+        $results = $rpm->process($request, Td_aip::query());
         return ApiResponse::success($results);
     }
 
@@ -322,7 +332,15 @@ public function getutctime(Request $request){
     $frq= DB::select(DB::raw($frq));
     return ApiResponse::success($frq);
     }
+    public function codchart(Request $request, RequestParamHandler $rpm)
+	{
+		$builder = CodChartTypes::query();
+		
+		$results = $rpm->process($request, $builder);
+		// dd($results);
 
+		return ApiResponse::success($results);
+    }
     public function Codcharttypes(Request $request)
 	{
         $frq = "SELECT * FROM cod_chart_types where code notnull order by seq";
@@ -432,9 +450,9 @@ public function getutctime(Request $request){
     public function getcontentrequestdetail(Request $request,string $tbl,string $id)
 	{
         if ($tbl=='temp'){
-            $frq ="SELECT a.*,b.category,b.item,a.content from eaip_chart_content_temp a inner join eaip_cod_category b on b.id=a.category_id inner join cod_aip c on c.des = b.category where a.arpt_ident='$id' and a.status in ('R','N') order by c.seq,b.sequence";
+            $frq ="SELECT a.*, b.category, b.item,b.gen, b.enr, b.adc, b.pgdc, b.gmc, b.aoc, b.patc, b.area, b.star, b.sid, b.smac, b.iac, b.vac from eaip_chart_content_temp a inner join eaip_cod_category b on b.id=a.category_id inner join cod_aip c on c.des = b.category where a.arpt_ident='$id' and a.status in ('R','N') order by c.seq,b.sequence";
         }else if ($tbl=='current'){
-            $frq ="SELECT a.*,b.category,b.item,a.content from eaip_chart_content a inner join eaip_cod_category b on b.id=a.category_id inner join cod_aip c on c.des = b.category where a.arpt_ident='$id' order by c.seq,b.sequence";
+            $frq ="SELECT a.*, b.category, b.item,b.gen, b.enr, b.adc, b.pgdc, b.gmc, b.aoc, b.patc, b.area, b.star, b.sid, b.smac, b.iac, b.vac from eaip_chart_content a inner join eaip_cod_category b on b.id=a.category_id inner join cod_aip c on c.des = b.category where a.arpt_ident='$id' order by c.seq,b.sequence";
         }
         $frq= DB::select(DB::raw($frq));
         return ApiResponse::success($frq);

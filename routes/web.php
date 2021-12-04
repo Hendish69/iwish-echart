@@ -169,6 +169,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity','checkblocked']],
 
     Route::get('timeline/{id}', 'App\Http\Controllers\PublicationsController@timeline');
     Route::get('requestview/{id}', 'App\Http\Controllers\PublicationsController@requestview');
+    Route::get('datahistory', 'App\Http\Controllers\PublicationsController@datahistory');
     Route::get('createpdf/{id}', 'App\Http\Controllers\PublicationsController@createpdf');
     // Route::get('pdf/{id}', 'App\Http\Controllers\PDFController@createPDF');
     Route::post('pdf', 'App\Http\Controllers\PdfController@createPDF');

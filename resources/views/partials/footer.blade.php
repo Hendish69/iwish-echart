@@ -2,7 +2,7 @@
 <div class="nk-footer mt-3" style="margin-bottom: -22px !important;">
     <div class="container-fluid">
         <div class="nk-footer-wrap">
-            <div class="nk-footer-copyright"> &copy; 2020 {{ config('app.name') }}. Directorate of Aviation Navigation, Directorate General of Civil Aviation<a href="/" target="_blank"></a>
+            <div class="nk-footer-copyright"> &copy; 2021 {{ config('app.name') }}. Directorate of Aviation Navigation, Directorate General of Civil Aviation<a href="/" target="_blank"></a>
             </div>
             {{-- <div class="nk-footer-links">
                 <ul class="nav nav-sm">
