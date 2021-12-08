@@ -706,7 +706,12 @@ $(function() {
 	        	if(response.status=='success'){
 	        		$('#vfr_table_body').empty();
 	        		
-	        		let wp = response.msg.waypoints; 
+	        		let wp = response.msg.waypoints;
+	        		if(wp.length < 1){ 
+			        	var $tr = $('<tr class="text-center">').append(
+					        	$('<td colspan="5">').html('<span class="text-danger">No data Available</span>')
+					        ).appendTo('#vfr_table_body');
+		        	}
 	        		let _from_lat 	= parseFloat(depart[1]);
 					let _from_lon 	= parseFloat(depart[0]);
 					let _to_lat 	= parseFloat(destiny[1]);
@@ -830,8 +835,7 @@ $(function() {
 	        		// $('#vfr_table').show();
 
 	        		// redraw map
-	        		reloadMap();
-
+	        		
 	        		let draw_group = wps.reduce((r, a) => { 
 						r[a.ats_ident] = [...r[a.ats_ident] || [], a]; 
 						return r;
@@ -1015,12 +1019,12 @@ $(function() {
 					$('#vfr_table').show();
 					// drawMarkers(marks);
 					drawMarkers(marks);
-					console.log('avg : ',avg);
-					console.log('idx : ',curr_idx);
+					// console.log('avg : ',avg);
+					// console.log('idx : ',curr_idx);
 					avg = cvrtH2M((avg / curr_idx).toFixed(2));
 					etd2eta($('#etd').val(),avg);
 					
-	        	} 
+	        	}
 	        },
 	        error: function() {
 	            alert('Error');
@@ -1035,11 +1039,15 @@ function etd2eta(etd,addtime){
 	let dec_h = parseFloat(tim[0]); 
 	// convert minute to decimal
 	let dec_m = (tim[1] / 60).toFixed(2);
-	console.log(dec_h);
-	console.log(dec_m);
-	console.log(addtime/60);
-	  
-	$('#eta').val( convertH2M(dec_h + parseFloat(dec_m) + parseFloat(addtime/60)) );
+	// console.log(dec_h);
+	// console.log(dec_m);
+	// console.log(addtime/60);
+	  if(addtime > 0){
+		$('#eta').val( convertH2M(dec_h + parseFloat(dec_m) + parseFloat(addtime/60)) );  	
+	  }else{
+	  	$('#eta').val(0);
+	  }
+	
 }
 var infowindow = new google.maps.InfoWindow();
     function drawPoly(path=[], colr='#ff0000', icn=[]){
