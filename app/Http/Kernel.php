@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\ModifyHeadersMiddleware::class
+        \App\Http\Middleware\ModifyHeadersMiddleware::class,
     ];
 
     /**
@@ -32,7 +32,7 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             // \Silber\PageCache\Middleware\CacheResponse::class,
-	    \App\Http\Middleware\EncryptCookies::class,
+	       \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -76,5 +76,6 @@ class Kernel extends HttpKernel
         'airnav'            => \App\Http\Middleware\AuthAirnav::class,
         'puta'              => \App\Http\Middleware\AuthPuta::class,
         'CORS'              => \App\Http\Middleware\CORS::class,
+        'ajax-session-expired' => \App\Http\Middleware\AjaxSessionExpiredMiddleware::class,
     ];
 }

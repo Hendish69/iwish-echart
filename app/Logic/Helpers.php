@@ -3672,3 +3672,9 @@ if(!function_exists('get_IP')){
         return $content['ip']; 
     }
 }
+if(!function_exists('acronym')){
+    function acronym($str){
+        $words = preg_split("/[\s,_-]+/", $str);
+        return $words;
+    }
+}

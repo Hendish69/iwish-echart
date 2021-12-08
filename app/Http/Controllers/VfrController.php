@@ -130,13 +130,13 @@ class VfrController extends Controller
         $user = Auth::user(); 
         $validator = Validator::make($request->all(), [
             'route' => 'required|string',
-            'wpt_name' => 'required|string',
-            'departure' => 'required|string',
-            'destination' => 'required|string',
-            'aircraft' => 'required|string',
-            'atd' => 'required',
-            'ata' => 'required',
-            'pic' => 'required|string',  
+            // 'wpt'   => 'required|string',
+            'depart_' => 'required|string',
+            'destiny_' => 'required|string',
+            // 'aircraft' => 'required|string',
+            // 'atd' => 'required',
+            // 'ata' => 'required',
+            // 'pic' => 'required|string',  
         ]);
         $request->wpt_id    = 'WPT'.$request->wpt_name.'1_1';
         $request->desc_name = $request->wpt_name;
@@ -253,5 +253,14 @@ class VfrController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function getInfoArpt($icao){
+        $url='';
+        if($icao != ''){
+            $data = Airport::select('arpt_ident')->where('icao',$icao)->first();
+            // dd($data['arpt_ident']);
+            $url = '/airportinfo/'.$data['arpt_ident'].'@interaktif';
+        }
+        return redirect($url);
     }
 }

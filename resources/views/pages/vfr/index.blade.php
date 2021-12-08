@@ -22,6 +22,9 @@
 	      cursor: not-allowed;
 	      opacity: 0.5;
 	  }
+	  .hideEl{
+	  	display:none;" 
+	  }
 	</style>
 
 @endsection
@@ -55,7 +58,7 @@
                                             </div>
                                         </div>
                                     </li> -->
-                                    <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                                    <!-- <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -87,7 +90,7 @@
 		                                    <div class="mb-3 row">
 		                                        <label class="col-sm-5 form-label" for="etd">ETD(Z)</label>
 		                                        <div class="col-sm-7">
-		                                            <input type="text" class="form-control" name="etd">
+		                                            <input type="text" class="form-control" name="etd" id="etd" readonly>
 		                                        </div>
 		                                    </div>	
 		                                    <div class="mb-3 row">
@@ -115,13 +118,13 @@
 		                                    <div class="mb-3 row">
 		                                        <label class="col-sm-5 form-label" for="etd">ETA(Z)</label>
 		                                        <div class="col-sm-7">
-		                                            <input type="text" class="form-control" name="eta">
+		                                            <input type="text" class="form-control" name="eta" id="eta" readonly>
 		                                        </div>
 		                                    </div>	
 		                                    <div class="mb-3 row">
 		                                        <label class="col-sm-5 form-label" for="etd">Speed</label>
 		                                        <div class="col-sm-7">
-		                                            <input type="text" class="form-control" name="speed">
+		                                            <input type="number" step="0.1" class="form-control" name="speed" id="speed" value="377.96">
 		                                        </div>
 		                                    </div>	
 	                                    </div> 
@@ -138,10 +141,14 @@
 			                <div class="nk-tb-list mt-n2 p-2"> 
 			                    <div class="row pt-2" style="display:none;" id="vfr_table"> 
 									<div class="col">
-										<table class="table table-bordered align-items-center table-sm">
+										<table class="table table-bordered align-items-center table-sm" id="vfr_table_">
 									  <thead class="thead-light">
 									   <tr>
-									     <th>#</th> <th>Route</th><th>Distance</th><th>Time</th>
+									     <th scope="col">#</th> 
+									     <th scope="col">Route</th>
+									     <th scope="col" class="hideEl">Coordinates</th>
+									     <th scope="col">Distance(Nm)</th>
+									     <th scope="col">Time</th>
 									    </tr>
 									  </thead>
 									  <tbody id="vfr_table_body"> 
@@ -149,6 +156,10 @@
 									  </tbody>
 									   
 									</table>
+									<div class="col-md-12 text-right mt-1">
+										<button type="button" id="csv" class="btn btn-sm btn-primary"  >SAVE DETAIL</button>
+										<button type="button" id="pdf" class="btn btn-sm btn-primary"  >TO PDF</button>
+									</div>
 									</div>
 								</div>
 									 
@@ -162,6 +173,8 @@
 				                                    <label class="col-sm-5 form-label" for="route">Route Name</label>
 				                                    <div class="col-sm-7">
 				                                        <input type="text" class="form-control" name="route" id="route">
+				                                        <input type="hidden" class="form-control" name="depart_" id="depart_">
+				                                        <input type="hidden" class="form-control" name="destiny_" id="destiny_">
 				                                    </div>
 				                                </div>	
 												<div class="col">
@@ -177,6 +190,7 @@
 												    <template x-for="(field, index) in fields" :key="index">
 												     <tr>
 												      <th scope="row" x-text="index + 1" style="vertical-align: middle;"></th>
+												      <td style="display:none"><input x-model="field.wpt_id" type="text" name="wpt_id[]" class="form-control"></td>
 												      <td><input x-model="field.wpt" type="text" name="wpt[]" class="form-control" x-on:change="handleWpt($event, index)" ></td>
 												      <td><input x-model="field.lat" type="text" name="lat[]" class="form-control" x-on:change="handleLat($event)"></td>
 												      <td><input x-model="field.lng" type="text" name="lng[]" class="form-control"></td>
@@ -222,6 +236,7 @@
 @section('footer_scripts') 
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> 
 <script src="{{ asset ('/images/marker/geolib.js') }}" type="text/javascript"></script>
+
 <script type="text/javascript">
 var map;
 var markerIndex=[];
@@ -454,29 +469,59 @@ function drawMarkers(marks){
     for (var i = 0; i < marks.length; i++) {
         var data = marks[i]
         var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+        let uri='';
+
+		if( marks[i].id === 'ORI' || marks[i].id === 'DST'){
+			uri = '/images/marker/airport.png';}
+		else{
+			uri = '/images/marker/NCRP.svg';}
+
+        var icon = {
+			url: uri, 
+		    scaledSize: new google.maps.Size(10, 10), // scaled size
+		};
+
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
-            title: data.name
+            title: data.name,
+            icon:icon
         });
         markers.push(marker); // push to data markers to remove that
         (function (marker, data) {
+        	let ori_linkInfo='';
+        	let dst_linkInfo='';
+        	if(data.id=='ORI'){
+        		let link = $('select[name="departure"]').find('option:selected').text().split(' - ');
+        		data.name = link[1];
+        		data.id  = link[0];
+        		ori_linkInfo = "<a href='{{ url('/') }}/get_infoarpt/"+link[0]+"' class='btn btn-sm btn-primary'>Info</a>";
+        	}
+        	if(data.id=='DST'){
+        		let link = $('select[name="destination"]').find('option:selected').text().split(' - ');
+        		data.name = link[1];
+        		data.id  = link[0];
+        		dst_linkInfo = "<a href='get_infoarpt/"+link[0]+"' class='btn btn-sm btn-primary'>Info</a>";
+        	}
             google.maps.event.addListener(marker, "click", function (e) {
-                infowindow.setContent("<div style = 'width:200px;min-height:40px'>" +
+                infowindow.setContent("<div style = 'max-width:400px;min-height:40px ;'class='p-1'>" +
+                						"<b>"+data.id+"</b><br></br>"+	
                 						"<table>" +
                 							"<tr>" +
-                								"<td colspan=3><h5>"+ data.name +"</h5>"+
-                								"<td>" +
+                								"<td>Name<td><td>:<td>" +
+                								"<td>" +data.name+ "<td>" +
                 							"<tr>"+
                 							"<tr>" +
-                								"<td>Route Name<td><td>:<td>" +
-                								"<td>" +data.id+ "<td>" +
+                								"<td>Lat<td><td>:<td>" +
+                								"<td> " +data.lat+ "<td>" +
                 							"<tr>"+
-                							// "<tr>" +
-                							// 	"<td>Geometry<td><td>:<td>" +
-                							// 	"<td>Lat : " +data.lat+ " Lon : "+ data.lng +"<td>" +
-                							// "<tr>"+
+                							"<tr>" +
+                								"<td>Lng<td><td>:<td>" +
+                								"<td>" +data.lng+ "<td>" +
+                							"<tr>"+
                 						"</table>"+ 
+                						"<br>"+ori_linkInfo+
+                						""+dst_linkInfo+
                 					  "</div>");
                 infowindow.open(map, marker);
             });
@@ -628,6 +673,8 @@ $(function() {
 	$('.airportlist').on('click', function(){
 		previousOption = $(this).find('option:selected').val();
 	});
+	
+	let avg;
 
 	$('#planningForm').on('submit', function(e) {
 		var formdata = $(this).serialize();
@@ -654,9 +701,25 @@ $(function() {
 					    { latitude: _from_lat, longitude: _from_lon },
 					    { latitude: _to_lat, longitude: _to_lon }
 					);
-					let up_rum = 5 + rum;
-					let lo_rum = rum - 5;
-					console.log('rum : '+rum);
+					let rum_ = geo.getRhumbLineBearing(
+					    { latitude: _to_lat, longitude: _to_lon },
+					    { latitude: _from_lat, longitude: _from_lon }
+					);
+					
+					let up_rum = 10 + rum;
+					if(up_rum > 360) up_rum = up_rum - 360;
+					let lo_rum = rum - 10;
+					if(lo_rum < 0) lo_rum = 360 - (-1 * lo_rum);
+					
+					// console.log('rum : '+rum);
+
+					let up_rum_ = 10 + rum_;
+					if(up_rum_ > 360) up_rum_ = up_rum_ - 360;
+					let lo_rum_ = rum_ - 10;
+					if(lo_rum_ < 0) lo_rum_ = 360 - (-1 * lo_rum_);
+					
+					// console.log('rum_ : '+rum_);
+
 					let _dist_start_end = geo.getDistance(
 					    { latitude: _from_lat, longitude: _from_lon },
 					    { latitude: _to_lat, longitude: _to_lon }
@@ -690,7 +753,7 @@ $(function() {
 									{ latitude: wp[a].geom.coordinates[1], longitude: wp[a].geom.coordinates[0] },
 							    	{ latitude: wp[a+1].geom.coordinates[1], longitude: wp[a+1].geom.coordinates[0] }
 								);
-								console.log('_next_dist : '+_next_dist)
+								console.log('_next_dist : '+_curr2next_dist)
 							}  
 						}
 						 
@@ -718,7 +781,7 @@ $(function() {
 						a++;
 					}
 					// console.dir('wp'+wp);
-					console.log('wp : '+JSON.stringify(wp,null,4));
+					// console.log('wp : '+JSON.stringify(wp,null,4));
 					let wps = NearestPoints(_from_lat, _from_lon, wp);
 					// console.dir('wps'+wps);
 					// console.log('wps : '+JSON.stringify(wps,null,4));
@@ -739,17 +802,17 @@ $(function() {
 					  return res;
 					}, {});
 
-	        		$.each(group, function(i, item) { 
-		        		if(item.count > 1){ 
-					        var $tr = $('<tr>').append(
-					        	$('<td>').html('<input type="checkbox" name="cek[]">'),
-					            $('<td>').text(item.ats_ident),
-					            $('<td>').text(item.dist),
-					            $('<td>').text(0)
-					        ).appendTo('#vfr_table_body');
-					    } 
-				    });
-	        		$('#vfr_table').show();
+	        		// $.each(group, function(i, item) { 
+		        		// if(item.count > 1){ 
+					        // var $tr = $('<tr>').append(
+					        // 	$('<td>').html('<input type="checkbox" name="cek[]">'),
+					        //     $('<td>').text(item.ats_ident),
+					        //     $('<td>').text(item.dist),
+					        //     $('<td>').text(0)
+					        // ).appendTo('#vfr_table_body');
+					    // } 
+				    // });
+	        		// $('#vfr_table').show();
 
 	        		// redraw map
 	        		reloadMap();
@@ -768,30 +831,33 @@ $(function() {
 		            }); 
 		            let i=0;
 		            let marks= [];
-		            while ( i < groups.length) {  
-						newLatLng = { id:groups[i].ats_ident, name: groups[i].wpt_name,  lat:groups[i].geom.coordinates[1], lng:groups[i].geom.coordinates[0] };
-						marks.push(newLatLng);	
-						i++;
-					}
+		   //          while ( i < groups.length) {  
+					// 	newLatLng = { id:groups[i].ats_ident, name: groups[i].wpt_name,  lat:groups[i].geom.coordinates[1], lng:groups[i].geom.coordinates[0] };
+					// 	marks.push(newLatLng);	
+					// 	i++;
+					// }
 
 					
 					// console.log('draw_group : '+JSON.stringify(draw_group));
 		            let idx=0; 
-
+		            let curr_idx=0; 
+		            let polys= [];
+		            avg=0;
 					$.each(draw_group, function(i, fitem) { 
 						// console.log('i : '+i);
 						let cur_route	= '';
 						let prev_route	= ''; 
 						let cur_dist	= 0;
 						let prev_dist	= 0;  
-						let _poly		= [];   
+						let _poly= [];
 						let newLatLng	= null; 
 						let dp_latlng 	= '';
 						// console.log('fitem : '+JSON.stringify(fitem,null,4));
 
 						if(fitem.length > 1){ // bila terdiri dari lebih dari 0 wpt
-							dp_latlng = { id: i, lat: _from_lat , lng: _from_lon }; 
+							dp_latlng = { id: 'ORI', name:'[ ' , lat: _from_lat , lng: _from_lon }; 
 							_poly.push(dp_latlng); //head 
+							marks.push(dp_latlng);
 							let fr_wpt;
 							let cr_wpt;
 							let to_wpt;
@@ -827,7 +893,7 @@ $(function() {
 										
 										
 										var get_next = function (data_arr, fr_wpt, to_wpt){ 
-											console.log('cur_wpto: '+fr_wpt+ ' to_wpto : '+to_wpt );
+											// console.log('cur_wpto: '+fr_wpt+ ' to_wpto : '+to_wpt );
 											let groupi =  NearestPoint(fr_wpt[0],fr_wpt[1], data_arr);
 											
 											if(parseInt(groupi.length) > 1){ 
@@ -844,6 +910,7 @@ $(function() {
 													if(groupi[0].dif < far ) {
 														newLatLng = { id:groupi[0].ats_ident, name: groupi[0].wpt_name, lat:groupi[0].geom.coordinates[1], lng:groupi[0].geom.coordinates[0] };
 														_poly.push(newLatLng);
+														marks.push(newLatLng);
 														newLatLng = null;
 													}  
 													// groupi.shift(); 
@@ -880,25 +947,63 @@ $(function() {
 										get_next(groups, prev_dist, curr_dist ); 
 									}	 
 							 	}
-								if(newLatLng!=null)	_poly.push(newLatLng);
+								if(newLatLng!=null)	{_poly.push(newLatLng);marks.push(newLatLng);}
 							}); 
 							
-							let ds_latlng = { id:i, lat: _to_lat, lng: _to_lon };
+							// let ds_latlng = { id:i, lat: _to_lat, lng: _to_lon };
+							let ds_latlng = { id:'DST', name:' ]', lat: _to_lat, lng: _to_lon };
 							_poly.push(ds_latlng); //tail
+							marks.push(ds_latlng);
+							// console.log('_poly' +idx+' '+_poly);
+							let paths = [];
+							let ids = '';
+							let points ='';
+							for (let i = 0; i < _poly.length; i++) {
+								ids += ' '+_poly[i].name;
+								points += '[ '+ _poly[i].lat +', '+ _poly[i].lng+' ],';
+							  	paths.push ({ latitude : _poly[i].lat, longitude: _poly[i].lng }); 
+							}
+							points = points.slice(0, -1);
+							// console.log('paths' +idx+' '+JSON.stringify(paths,null,4));
+							let _dist_bt_points = geo.getPathLength( paths );
+							_dist_bt_points = (_dist_bt_points / 1852).toFixed(2);
+							let _speed =  _dist_bt_points / $('#speed').val() ;
+							avg += _speed; 
+
+							var $tr = $('<tr>').append(
+					        	$('<th scope="row">').html('<input type="checkbox" name="cek[]">'),
+					            $('<td>').text(ids),
+					            $('<td class="hideEl">').text(points),
+					            $('<td>').text(_dist_bt_points),
+					            
+					            $('<td>').text(convertH2M(_speed))
+					        ).appendTo('#vfr_table_body');
+
+							// console.log('_dist_bt_points '+_dist_bt_points);
+							// console.log('paths '+JSON.stringify(paths,null,4));
+							// console.log('_poly' +idx+' '+JSON.stringify(_poly,null,4));
+							curr_idx++;
 						}
 						 
 
 						drawPoly(_poly,'green');
+						// 
 						// }
 						// else{
 						// 	let mLatLng = {lat:  item[0].geom.coordinates[1], lng: item[0].geom.coordinates[0]};
 						// 	drawMarker(item[0].wpt_name,mLatLng,'red');
 						// }
-						console.log('idx : '+idx); 
+						// console.log('idx : '+idx); 
 						idx++;
 
 					}); // end loop draw_group
+					$('#vfr_table').show();
+					// drawMarkers(marks);
 					drawMarkers(marks);
+					console.log('avg : ',avg);
+					console.log('idx : ',curr_idx);
+					avg = cvrtH2M((avg / curr_idx).toFixed(2));
+					etd2eta($('#etd').val(),avg);
 					
 	        	} 
 	        },
@@ -908,8 +1013,19 @@ $(function() {
 	    });
 	    return false;
 	});
-}); 
+});
 
+function etd2eta(etd,addtime){
+	let tim = etd.split(":");
+	let dec_h = parseFloat(tim[0]); 
+	// convert minute to decimal
+	let dec_m = (tim[1] / 60).toFixed(2);
+	console.log(dec_h);
+	console.log(dec_m);
+	console.log(addtime/60);
+	  
+	$('#eta').val( convertH2M(dec_h + parseFloat(dec_m) + parseFloat(addtime/60)) );
+}
 var infowindow = new google.maps.InfoWindow();
     function drawPoly(path=[], colr='#ff0000', icn=[]){
 		var path = path;
@@ -968,9 +1084,12 @@ var infowindow = new google.maps.InfoWindow();
 			strokeWeight: 1, 
           });
         }); 
+        // console.log($('[name="cek[]"]'));
+		// console.log('polys '+ JSON.stringify(polys,null,4));
         var _cek = $('[name="cek[]"]').eq(polys.length-1);
-        // console.log(_cek);
+       
         _cek.click(function () {
+        	console.log($(this));
 		    if ($(this).is(':checked')) {
 		        poly.setOptions({
 		            strokeColor: '#000',
@@ -1006,8 +1125,8 @@ var infowindow = new google.maps.InfoWindow();
 			  }
 			  
 			}
-
-			infowindow.setContent("<br>Route : " + path[index].id + "<br>Distance: "+distance);
+			infowindow.setContent("<br>Route : " + path[index].id);
+			// infowindow.setContent("<br>Route : " + path[index].id + "<br>Distance: "+distance);
 			infowindow.setPosition(this.getPath().getAt(index));
 			infowindow.open(map); 
 		});
@@ -1028,6 +1147,11 @@ google.maps.event.addDomListener(window, "load", initMap);
 	      addNewField() {
 	      	  // let rn = $('#route').val();
 	      	  // console.log(rn);
+	      	  let dep = $('select[name="departure"]').find('option:selected').text().split(" - ");
+			  let des = $('select[name="destination"]').find('option:selected').text().split(" - ");
+			  $('#depart_').val(dep[0]);
+			  $('#destiny_').val(des[0]);
+
 	          this.fields.push({
 	              wpt_id:'',
 	              wpt: '',
@@ -1049,8 +1173,9 @@ google.maps.event.addDomListener(window, "load", initMap);
 			        );
 			        val = val.substring(0, 5);
 			        this.fields[idex].wpt = val;
-		     	} 
-		     	this.fields[idex].wpt_id = 'WPT_'+val+'_'+idex+'_'+idex;
+		     	}else{ 
+		     		this.fields[idex].wpt_id = 'WPT_'+val+'_'+(idex+1)+'_'+(idex+1);
+		     	}
 		    },
 		    handleLat(e){
 		    	console.log(e);
@@ -1084,6 +1209,72 @@ google.maps.event.addDomListener(window, "load", initMap);
 			}
 	      }
 	 } 
-	 
+
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="{{ asset ('/js/tableToCsv.js') }}"></script>
+<script type="text/javascript">
+	$(function (){
+		var date = new Date;
+		var seconds = date.getSeconds();
+		var minutes = date.getMinutes();
+		var hour = date.getHours();
+		var hm = pad(hour,2) +':'+ pad(minutes,2);
+		$('#etd').val(hm);
+	});
+	function cvrtH2M(timeInHour){
+        let to_min = Math.floor(timeInHour * 60); 
+        return to_min;
+    }
+	function convertH2M(timeInHour){
+        let to_min = Math.floor(timeInHour * 60); 
+        return timeConvert(to_min);
+    }
+    function timeConvert(n) {
+        var num = n;
+        var hours = (num / 60);
+        var rhours = Math.floor(hours);
+        var minutes = (hours - rhours) * 60;
+        var rminutes = Math.round(minutes);
+        return pad(rhours,2) + ":" + pad(rminutes,2);
+    }
+    function pad (str, max) {
+	  str = str.toString();
+	  return str.length < max ? pad("0" + str, max) : str;
+	}
+	function acronym(str){
+		var matches = str.match(/\b(\w)/g); 
+		var acronym = matches.join(''); 
+		return acronym;
+	}
+	$('#pdf').on('click',function(){
+		// var element = $('#vfr_table_')[0].cloneNode(true);
+		var element = $('#vfr_table_')[0];
+		// $("#vfr_table_>tr>td.active").removeClass("active");
+		// console.dir(element);
+  		// element.classList.remove("hideEl");
+		 html2canvas(element, { 
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }],
+                        pageSize: 'A4',
+		                pageOrientation: 'portrait',
+		                // pageMargins: [ 5, 5, 5, 5 ],
+                    };
+                    pdfMake.createPdf(docDefinition).download("vfr_planning.pdf");
+                }
+            });
+	});
+	$('#csv').on('click',function(){
+		$('#vfr_table_').tableToCsv({
+		  filename: 'vfr_planning.csv',
+		  separator: ';',
+		});
+	});
 </script>
 @endsection

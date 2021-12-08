@@ -186,7 +186,7 @@
             }
         </script>
         @yield('footer_scripts')
-        @yield('ext_script')
+        @yield('ext_script') 
     </body>
     
 </html>

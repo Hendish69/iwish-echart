@@ -15,6 +15,8 @@ class UserController extends Controller
      */
     public function __construct()
     {
+         // check if session expired for ajax request
+        // $this->middleware('ajax-session-expired');
         $this->middleware('auth');
     }
 
