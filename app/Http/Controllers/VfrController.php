@@ -54,8 +54,10 @@ class VfrController extends Controller
         //             ->get();
         // return $wpts;
          $wpts = AtsTemp::query()->with(['remarks'])->with(['nav1'])->with(['wpt1'])->with(['nav2'])->with(['wpt2'])
+                // ->select(
+                //         DB::raw('ats_temp.ats_id, ats_temp.ats_ident, ats_temp.seq_424, ats_temp.point, waypoint.wpt_name, waypoint.geom geom, ats_temp.geom::json a_geom, ats_temp.track_out, ats_temp.dist, ats_temp.maa, ats_temp.bidirect, ats_temp.point2'),
                 ->select(
-                        DB::raw('ats_temp.ats_id, ats_temp.ats_ident, ats_temp.seq_424, ats_temp.point, waypoint.wpt_name, waypoint.geom geom, ats_temp.geom::json a_geom, ats_temp.track_out, ats_temp.dist, ats_temp.maa, ats_temp.bidirect, ats_temp.point2'),
+                        DB::raw('ats_temp.ats_id, ats_temp.ats_ident, ats_temp.seq_424, ats_temp.point, waypoint.wpt_name, waypoint.geom geom, ats_temp.geom a_geom, ats_temp.track_out, ats_temp.dist, ats_temp.maa, ats_temp.bidirect, ats_temp.point2'),
                         DB::raw("(CASE when (substring(point,1,3)) ='WPT' THEN (select desc_name from waypoint_temp where wpt_id=point)
                         else (select CONCAT(nav_ident||' ' ||definition) from navaid_temp a inner join cod_nav_types b on b.id=a.type where nav_id=point) end) as point_1"),
                         DB::raw("(CASE when (substring(point2,1,3)) ='WPT' THEN (select desc_name from waypoint_temp where wpt_id=point2) else (select CONCAT(nav_ident||' ' ||definition) from navaid_temp a inner join cod_nav_types b on b.id=a.type where nav_id=point2) end) as point_2"))
