@@ -75,10 +75,10 @@
 			                     	<div class="row">
 			                     		<div class="col-6">
 	                                    	<div class="mb-3 row">
-		                                        <label class="col-sm-5 form-label" for="departure">Departure</label>
+		                                        <label class="col-sm-5 form-label" for="departure"><a href="/vfr_planning" id="lbl_depart">Departure</a></label>
 		                                        <div class="col-sm-7"> 
 	                                        		<div class="form-control-wrap"  x-data="{{ $airports->content() }}" >
-													  <select x-model="data" class="form-select form-control form-control-lg airportlist" data-search="on" name="departure">
+													  <select x-model="data" class="form-select form-control form-control-lg airportlist" data-search="on" name="departure" id="departure">
 													     <option value="" selected="selected"></option>
 													    <template x-for='airport in data'>
 													      <option :value="airport.value" x-text="airport.label"></option>
@@ -102,10 +102,10 @@
 	                                    </div>
 	                                    <div class="col-6">
 	                                    	<div class="mb-3 row">
-		                                        <label class="col-sm-5 form-label" for="destiny">Destination</label>
+		                                        <label class="col-sm-5 form-label" for="destiny"><a href="/vfr_planning" id="lbl_destiny">Destination</a></label>
 		                                        <div class="col-sm-7">
 		                                            <div class="form-control-wrap" x-data="{{ $airports->content() }}">
-													  <select x-model="data" class="form-select form-control form-control-lg airportlist" data-search="on" name="destination">
+													  <select x-model="data" class="form-select form-control form-control-lg airportlist" data-search="on" name="destination" id="destination">
 													     <option value="" selected="selected"></option>
 													    <template x-for="airport in data">
 													      <option :value="airport.value" x-text="airport.label"></option>
@@ -495,12 +495,16 @@ function drawMarkers(marks){
         		let link = $('select[name="departure"]').find('option:selected').text().split(' - ');
         		data.name = link[1];
         		data.id  = link[0];
+        		var lbl_dep = document.getElementById('lbl_depart');
+ 				lbl_dep.setAttribute('href', '{{ url("/") }}/get_infoarpt/'+link[0]);
         		ori_linkInfo = "<a href='{{ url('/') }}/get_infoarpt/"+link[0]+"' class='btn btn-sm btn-primary'>Info</a>";
         	}
         	if(data.id=='DST'){
         		let link = $('select[name="destination"]').find('option:selected').text().split(' - ');
         		data.name = link[1];
         		data.id  = link[0];
+        		var lbl_des = document.getElementById('lbl_destiny');
+ 				lbl_des.setAttribute('href', '{{ url("/") }}/get_infoarpt/'+link[0]);
         		dst_linkInfo = "<a href='get_infoarpt/"+link[0]+"' class='btn btn-sm btn-primary'>Info</a>";
         	}
             google.maps.event.addListener(marker, "click", function (e) {
@@ -666,6 +670,7 @@ $(function() {
 	var previousOption = null;
 	$('.airportlist').on('change', function(){
 		const selectedOption = $(this).find('option:selected').val();
+
 		$(`[value="${previousOption}"]:disabled`).attr('disabled', false);
 		previousOption = null;
 		$(`[value="${selectedOption}"]:not(:selected)`).attr('disabled', true);
@@ -673,7 +678,17 @@ $(function() {
 	$('.airportlist').on('click', function(){
 		previousOption = $(this).find('option:selected').val();
 	});
-	
+	$('#departure').on('change', function(){
+		let link = $(this).find('option:selected').text().split(' - ');
+		var lbl_dep = document.getElementById('lbl_depart');
+			lbl_dep.setAttribute('href', '{{ url("/") }}/get_infoarpt/'+link[0]);
+	});
+	$('#destination').on('change', function(){
+		let link = $(this).find('option:selected').text().split(' - ');
+		var lbl_des = document.getElementById('lbl_destiny');
+			lbl_des.setAttribute('href', '{{ url("/") }}/get_infoarpt/'+link[0]);
+	});
+
 	let avg;
 
 	$('#planningForm').on('submit', function(e) {
