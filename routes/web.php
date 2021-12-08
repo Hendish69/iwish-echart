@@ -267,6 +267,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity','checkblocked']],
     Route::get('vfr_planning', 'App\Http\Controllers\VfrController@index');
     Route::post('vfr_planning', 'App\Http\Controllers\VfrController@store');
     Route::post('get_route', 'App\Http\Controllers\VfrController@getRoute');
+    Route::get('get_infoarpt/{id}', 'App\Http\Controllers\VfrController@getInfoArpt');
     Route::get('GeoHi/{lat}/{lon}', function($lat,$lon){
         $hi= GeoHi($lat,$lon);
         
