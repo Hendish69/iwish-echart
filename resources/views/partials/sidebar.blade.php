@@ -57,7 +57,7 @@
                     </li>
                     <li class="nk-menu-item">
                         <a href="/chartprop/enr/pro" class="nk-menu-link">
-                            <span class="nk-menu-icon"><em class="icon ni ni-star-round"></em></span>
+                            <span class="nk-menu-icon"><em class="icon ni ni-view-x7"></em></span>
                             <span class="nk-menu-text">En-Route</span>
                         </a>
                     </li>
