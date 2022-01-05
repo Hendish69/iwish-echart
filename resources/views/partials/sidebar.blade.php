@@ -56,6 +56,12 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
+                        <a href="/chartprop/enr/pro" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-star-round"></em></span>
+                            <span class="nk-menu-text">En-Route</span>
+                        </a>
+                    </li>
+                    <li class="nk-menu-item">
                         <a href="/vfr_planning" class="nk-menu-link">
                             <span class="nk-menu-icon"><em class="icon ni ni-notes-alt"></em></span>
                             <span class="nk-menu-text">VFR Planning</span>

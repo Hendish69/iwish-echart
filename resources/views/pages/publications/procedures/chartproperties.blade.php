@@ -17,7 +17,7 @@
             <div class="panel-heading col-md-12 mt-3">
                 <button onclick="backtomenu()" class="btn btn-sm btn-dim btn-light"><i class="icon ni ni-reply-fill"></i> Back</button>
             </div>
-            <div class="col-md-4 mt-1">
+            <div class="col-md-4 mt-1" id="searcharpt">
                 <strong>ICAO</strong>
                 <br>
                 <input type="text" class="form-control" onfocusout="searchats()" name="icao" id="icao" placeholder= "search Airport by location indicator..."">
@@ -82,7 +82,7 @@
                     <input type="hidden" name="listproc" id="listproc">
                     <input type="hidden" name="listfreq" id="listfreq">
                     <input type="hidden" name="chart_id" id="chart_id">
-                    <input type="hidden" name="chart_arpt_ident" id="chart_arpt_ident" value="{{$airport[0]->arpt_ident}}">
+                    <input type="hidden" name="chart_arpt_ident" id="chart_arpt_ident">
                     <input type="hidden" name="save_status" id="status">
                     <input type="hidden" name="deg" id="deg">
                     <input type="hidden" name="mapt" id="mapt">
@@ -98,8 +98,14 @@
 @section('footer_scripts')
 
 <script type="text/javascript">
-var charts =@json($chart);arpt=@json($airport);cod=@json($cod);tbl=@json($tbl);bm=@json($bm);
-// console.log(arpt)
+var charts =@json($chart);arpt=@json($airport);cod=@json($cod);tbl=@json($tbl);bm=@json($bm);chtid='';
+// console.log(charts,bm)
+
+    chtid=arpt[0].arpt_ident;
+    $("#titleholding").html(arpt[0].icao + ' ' + arpt[0].city_name + '/'+ arpt[0].arpt_name + ' Charts')
+
+    $("#chart_arpt_ident").val(chtid)
+
 
 
 // var fld=['bm_id','chart_id','chart_name','chart_type','customer','footer','msa_id','sn','seq','rwy','nav','cat','page','rnav','remarks'];
@@ -151,6 +157,8 @@ charts.sort((a,b) => (a.chart_type > b.chart_type) ? 1 : ((b.chart_type > a.char
 
     bm.forEach(v=>{
     // console.log(v.chart)
+    var ix =charts.findIndex(x=>x.bm_id==v.chart_id);
+    if (ix !==-1){
         var cht='Not Used';
         if (v.chart.length > 0){
             cht='Used by '+ v.chart.length + ' charts'
@@ -175,6 +183,8 @@ charts.sort((a,b) => (a.chart_type > b.chart_type) ? 1 : ((b.chart_type > a.char
             '<td>'+ v.grid +'</td>'+
         '</tr>';
         $("#framelist").append(hsl);
+
+    }
     });
 // $("#dataholdingdetail").hide();
 
@@ -189,23 +199,21 @@ input.addEventListener("keyup", function(event) {
     }
 });
 
-if (arpt.length > 0){
-    $("#titleholding").html(arpt[0].icao + ' ' + arpt[0].city_name + '/'+ arpt[0].arpt_name + ' Charts')
-}
+
 
 function Editframe(id){
-    window.location.href = '/chartframe/edit/' + id + '/' + arpt[0].arpt_ident ;
+    window.location.href = '/chartframe/edit/' + id + '/' + chtid ;
 }
 function EditChart(id){
     console.log(id)
-    window.location.href = '/chartprop/edit/' + id + '/' + arpt[0].arpt_ident ;
+    window.location.href = '/chartprop/edit/' + id + '/' + chtid ;
 }
 
 function NewFrameData(){
-    window.location.href = '/chartframe/edit/new/' + arpt[0].arpt_ident ;
+    window.location.href = '/chartframe/edit/new/' + chtid ;
 }
 function NewData(){
-    window.location.href = '/chartprop/edit/new/' + arpt[0].arpt_ident ;
+    window.location.href = '/chartprop/edit/new/' + chtid ;
     
 }
 

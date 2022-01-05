@@ -60,6 +60,8 @@ use App\Models\Api\AirspaceClass;
 use App\Models\Api\AirspaceSegment;
 use App\Models\Api\AirspaceClassTemp;
 use App\Models\Api\AirspaceSegmentTemp;
+use App\Models\Api\Td_aip;
+
 
 
 
@@ -123,14 +125,24 @@ class AipController extends Controller
         if ($user->isAdmin()) {
             // return view('pages.admin.home');
         }
-        $data['tbl']=$tbl;
-        $data['bm']= getDataApi($originalInput, 'api/frame/chart?arpt_ident='.$id);
-        $data['chart']= getDataApi($originalInput, 'api/proc/chart?chart_arpt_ident='.$id.'&sort=seq:asc');
-        $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
-        $data['airport']= getDataApi($originalInput, 'api/airports?arpt_ident='.$id);
-        $data['paper']= getDataApi($originalInput, 'api/cod/list/cod_paper_size');
-        
+        // dd($id,$tbl);
+        if ($id=='enr'){
+            $data['tbl']=$tbl;
+            $data['chart']= getDataApi($originalInput, 'api/proc/chart?chart_type=11&sort=seq:asc');
+            $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+            $data['paper']= getDataApi($originalInput, 'api/cod/list/cod_paper_size');
+            return view('pages.publications.procedures.enrchartproperties',$data);
+        }else{
+
+            $data['tbl']=$tbl;
+            $data['bm']= getDataApi($originalInput, 'api/frame/chart?arpt_ident='.$id);
+            $data['chart']= getDataApi($originalInput, 'api/proc/chart?chart_arpt_ident='.$id.'&sort=seq:asc');
+            $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+            $data['airport']= getDataApi($originalInput, 'api/airports?arpt_ident='.$id);
+            $data['paper']= getDataApi($originalInput, 'api/cod/list/cod_paper_size');
             return view('pages.publications.procedures.chartproperties',$data);
+        }
+        
         
         
     }
@@ -139,29 +151,44 @@ class AipController extends Controller
     {
         $originalInput=Request::input();
         $user = Auth::user();
-
+// dd($id,$arptident);
         if ($user->isAdmin()) {
             // return view('pages.admin.home');
         }
-        if ($id=='new'){
-            $data['edit']='new';
-            $data['chart']= getDataApi($originalInput, 'api/proc/chart?chart_arpt_ident='.$arptident.'&sort=seq:asc');
+        if ($arptident=='enr'){
+            if ($id=='new'){
+                $data['edit']='new';
+                $data['chart']= [];
+            }else{
+                $data['edit']='edit';
+                $data['chart']= getDataApi($originalInput, 'api/proc/chart?id='.$id.'&sort=seq:asc');
+
+            }
+            $data['paper']= getDataApi($originalInput, 'api/cod/list/cod_paper_size');
+            $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+            return view('pages.publications.procedures.chartframeenr',$data);
         }else{
-            $data['edit']='edit';
-            $data['chart']= getDataApi($originalInput, 'api/proc/chart?id='.$id.'&sort=seq:asc');
-        }
-        $data['bm']= getDataApi($originalInput, 'api/frame/chart?arpt_ident='.$arptident);
-        $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
-        $data['airport']= getDataApi($originalInput, 'api/airports?arpt_ident='.$arptident);
-        $data['proc']= getDataApi($originalInput, 'api/procedures/temp?arpt_ident='.$arptident);
-        $data['wptdesc']=DB::table('cod_wpt_desc')->orderby('id','asc')->get();
-        $data['elev'] = getDataApi($originalInput, 'api/eaip/contenttemp?arpt_ident='.$arptident.'&category_id=228');
-        $data['arptfreq'] = getDataApi($originalInput, 'api/freqarpt/temp/'.$arptident);
-        $data['freq'] = getDataApi($originalInput, 'api/chartfreq/temp?arpt_ident='.$arptident);
-        $data['rawdata']=getDataApi($originalInput, 'api/pub/rawdata?fieldid='.$arptident);
-        $data['navaids'] = getDataApi($originalInput, 'api/navarpt/temp?arpt_ident='.$arptident);
-            // dd($data);
+            if ($id=='new'){
+                $data['edit']='new';
+                $data['chart']= getDataApi($originalInput, 'api/proc/chart?chart_arpt_ident='.$arptident.'&sort=seq:asc');
+            }else{
+                $data['edit']='edit';
+                $data['chart']= getDataApi($originalInput, 'api/proc/chart?id='.$id.'&sort=seq:asc');
+            }
+            $data['bm']= getDataApi($originalInput, 'api/frame/chart?arpt_ident='.$arptident);
+            $data['cod']= getDataApi($originalInput, 'api/cod/list/cod_chart_types');
+            $data['airport']= getDataApi($originalInput, 'api/airports?arpt_ident='.$arptident);
+            $data['proc']= getDataApi($originalInput, 'api/procedures/temp?arpt_ident='.$arptident);
+            $data['wptdesc']=DB::table('cod_wpt_desc')->orderby('id','asc')->get();
+            $data['elev'] = getDataApi($originalInput, 'api/eaip/contenttemp?arpt_ident='.$arptident.'&category_id=228');
+            $data['arptfreq'] = getDataApi($originalInput, 'api/freqarpt/temp/'.$arptident);
+            $data['freq'] = getDataApi($originalInput, 'api/chartfreq/temp?arpt_ident='.$arptident);
+            $data['rawdata']=getDataApi($originalInput, 'api/pub/rawdata?fieldid='.$arptident);
+            $data['navaids'] = getDataApi($originalInput, 'api/navarpt/temp?arpt_ident='.$arptident);
             return view('pages.publications.procedures.chartpropertiesform',$data);
+
+        }
+            // dd($data);
        
         
     }
